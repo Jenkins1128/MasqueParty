@@ -8,8 +8,7 @@
 
 import UIKit
 
-import FirebaseDatabase
-import FirebaseAuth
+import Firebase
 import CoreLocation
 
 private let reuseIdentifier = "NearbyCollectionViewCell"
@@ -18,7 +17,7 @@ private let reuseIdentifier = "NearbyCollectionViewCell"
 class NearbyCollectionViewController: UICollectionViewController, CLLocationManagerDelegate {
 
     
-    var databaseRef = Database.database().reference()
+//    var databaseRef = Database.database().reference()
      var usersDict = NSDictionary()
       var usersDoct = NSDictionary()
      var manager: CLLocationManager!
@@ -32,13 +31,13 @@ class NearbyCollectionViewController: UICollectionViewController, CLLocationMana
      lazy var userIDS = [String]()
     let theuser = Auth.auth().currentUser
     
-    var ref = Database.database().reference()
+//    var ref = Database.database().reference()
    
 
     @IBOutlet var nearbyLoading: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.hidesBackButton = true
         
        
         
@@ -65,109 +64,109 @@ class NearbyCollectionViewController: UICollectionViewController, CLLocationMana
             print("Location services are not enabled")
             label.text = "Enable Location Services"
             if self.theuser?.email != nil {
-                self.ref.child("user_profile").child("\(self.theuser!.uid)/postalCity").removeValue()
+//                self.ref.child("user_profile").child("\(self.theuser!.uid)/postalCity").removeValue()
                 
             }else{
-                self.ref.child("user_profile").child("\("jtHIiFvY1LZgae6YquGgnAt9pfh2")/\(guestCoda[0])").setValue("")
+//                self.ref.child("user_profile").child("\("jtHIiFvY1LZgae6YquGgnAt9pfh2")/\(guestCoda[0])").setValue("")
             }
 
         }
       
         
         if self.theuser?.email != nil {
-            self.databaseRef.child("user_profile").observeSingleEvent(of: .value, with :{
-            (snapshot)  in
-            self.usersDict = (snapshot.value as? NSDictionary)!
-                        for(_,details) in self.usersDict{
-                            let numberFormatter = NumberFormatter()
-                            numberFormatter.numberStyle = NumberFormatter.Style.decimal
-               
-                let usersDuct = snapshot.value as! NSDictionary
-                
-                
-                            let userDetzils = usersDuct.object(forKey: self.theuser!.uid)
-                           
-                var city : String!
-                            city = (userDetzils! as AnyObject).object(forKey: "postalCity") as? String
-                
-                            self.userAreas[0] = "\(String(describing: city!))"
-                            let cita = (details as AnyObject).object(forKey: "postalCity") as? String
-                            
-                            if let name = (details as AnyObject).object(forKey: "name") as? String {
-                                
-                                if let prif = (details as AnyObject).object(forKey: "uids") as? String {
-               
-                                    let appendNO = (userDetzils! as AnyObject).object(forKey: "appendNo") as? String
-                if city != nil || city != "" {
-                    if let nxm = (details as AnyObject).object(forKey: "points") as? String {
-                        if let nym = (details as AnyObject).object(forKey: "views") as? String {
-                        if prif != (self.theuser!.uid){
-                            if prif != "jtHIiFvY1LZgae6YquGgnAt9pfh2" {
-                            print("Im not in nearby, hoo ra")
-                          
-                            
-                            
-                            if cita == self.userAreas.first {
-                               
-                                //Here above is where you can set the OR to
-                                print("we got users in the area")
-                                
-                               
-                                
-                                
-                                if let img = (details as AnyObject).object(forKey: "profile_pic_small") as? String {
-                                    if let nmScore = Int(nxm) {
-                                        if let nmView = Int(nym) {
-                                    
-                                            if let nqmScores = numberFormatter.string(from: NSNumber(value: nmScore)) {
-                                                if let nzmViews = numberFormatter.string(from: NSNumber(value: nmView)) {
-                                
-                                
-                                if appendNO != "1" && city != "" && city != nil{
-                                print(name)
-                                print(img)
-                                print(nqmScores)
-                                self.userImagesArray.append(img)
-                                self.userNamesArray.append(name)
-                                self.userScores.append("\(nqmScores)")
-                                self.userViews.append("\(nzmViews)")
-                                self.userIDS.append("\(prif)")
-                            self.databaseRef.child("user_profile").child("\(self.theuser!.uid)/appendNo").setValue("1")
-                                    label.text = "\(String(describing: city!))" + " (\(numberFormatter.string(from: NSNumber(value: self.userNamesArray.count))!))"
-                                self.collectionView?.reloadData()
-                                self.nearbyLoading.stopAnimating()
-                                
-                                }else{
-                                    self.nearbyLoading.stopAnimating()
-                                    label.text = "Enable Location Services"
-                                }
-                                }
-                                
-                            }else{
-                                self.nearbyLoading.stopAnimating()
-                                if city != nil && city != ""{
-                                    label.text = "\(String(describing: city))" + "\n (\(numberFormatter.string(from: NSNumber(value: self.userNamesArray.count))!))"
-                                }
-                                }
-                            }
-                                }
-                            }
-                            }
-                            }else{
-                                label.text = "Enable Location Services"
-                            }
-                        }
-                    }
-                        }
-                    }
-
-                }
-                }
-
-               
-            }
-            
-        })
+//            self.databaseRef.child("user_profile").observeSingleEvent(of: .value, with :{
+//            (snapshot)  in
+//            self.usersDict = (snapshot.value as? NSDictionary)!
+//                        for(_,details) in self.usersDict{
+//                            let numberFormatter = NumberFormatter()
+//                            numberFormatter.numberStyle = NumberFormatter.Style.decimal
+//
+//                let usersDuct = snapshot.value as! NSDictionary
+//
+//
+//                            let userDetzils = usersDuct.object(forKey: self.theuser!.uid)
+//
+//                var city : String!
+//                            city = (userDetzils! as AnyObject).object(forKey: "postalCity") as? String
+//
+//                            self.userAreas[0] = "\(String(describing: city!))"
+//                            let cita = (details as AnyObject).object(forKey: "postalCity") as? String
+//
+//                            if let name = (details as AnyObject).object(forKey: "name") as? String {
+//
+//                                if let prif = (details as AnyObject).object(forKey: "uids") as? String {
+//
+//                                    let appendNO = (userDetzils! as AnyObject).object(forKey: "appendNo") as? String
+//                if city != nil || city != "" {
+//                    if let nxm = (details as AnyObject).object(forKey: "points") as? String {
+//                        if let nym = (details as AnyObject).object(forKey: "views") as? String {
+//                        if prif != (self.theuser!.uid){
+//                            if prif != "jtHIiFvY1LZgae6YquGgnAt9pfh2" {
+//                            print("Im not in nearby, hoo ra")
+//
+//
+//
+//                            if cita == self.userAreas.first {
+//
+//                                //Here above is where you can set the OR to
+//                                print("we got users in the area")
+//
+//
+//
+//
+//                                if let img = (details as AnyObject).object(forKey: "profile_pic_small") as? String {
+//                                    if let nmScore = Int(nxm) {
+//                                        if let nmView = Int(nym) {
+//
+//                                            if let nqmScores = numberFormatter.string(from: NSNumber(value: nmScore)) {
+//                                                if let nzmViews = numberFormatter.string(from: NSNumber(value: nmView)) {
+//
+//
+//                                if appendNO != "1" && city != "" && city != nil{
+//                                print(name)
+//                                print(img)
+//                                print(nqmScores)
+//                                self.userImagesArray.append(img)
+//                                self.userNamesArray.append(name)
+//                                self.userScores.append("\(nqmScores)")
+//                                self.userViews.append("\(nzmViews)")
+//                                self.userIDS.append("\(prif)")
+//                            self.databaseRef.child("user_profile").child("\(self.theuser!.uid)/appendNo").setValue("1")
+//                                    label.text = "\(String(describing: city!))" + " (\(numberFormatter.string(from: NSNumber(value: self.userNamesArray.count))!))"
+//                                self.collectionView?.reloadData()
+//                                self.nearbyLoading.stopAnimating()
+//
+//                                }else{
+//                                    self.nearbyLoading.stopAnimating()
+//                                    label.text = "Enable Location Services"
+//                                }
+//                                }
+//
+//                            }else{
+//                                self.nearbyLoading.stopAnimating()
+//                                if city != nil && city != ""{
+//                                    label.text = "\(String(describing: city))" + "\n (\(numberFormatter.string(from: NSNumber(value: self.userNamesArray.count))!))"
+//                                }
+//                                }
+//                            }
+//                                }
+//                            }
+//                            }
+//                            }else{
+//                                label.text = "Enable Location Services"
+//                            }
+//                        }
+//                    }
+//                        }
+//                    }
+//
+//                }
+//                }
+//
+//
+//            }
+//
+//        })
             
             self.nearbyLoading.startAnimating()
             label.text = "Looking for people in your location..."

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>725109078604-5geik60rgueopu0c4372dcbk7jvucv46.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.725109078604-5geik60rgueopu0c4372dcbk7jvucv46</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCG8RBMDUJbwWxXc-Qze8UFFJ-LiXtbh58</string>
+	<key>GCM_SENDER_ID</key>
+	<string>725109078604</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Isaiah-Jenkins.MasqueParty.2ZW8D4GCGX</string>
+	<key>PROJECT_ID</key>
+	<string>masqueparty-173fe</string>
+	<key>STORAGE_BUCKET</key>
+	<string>masqueparty-173fe.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:725109078604:ios:3150bbb802ae5de8</string>
+	<key>DATABASE_URL</key>
+	<string>https://masqueparty-173fe.firebaseio.com</string>
+</dict>
+</plist>

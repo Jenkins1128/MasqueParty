@@ -12,11 +12,9 @@
 import UIKit
 import Firebase
 import FBSDKCoreKit
-import FirebaseAuth
 import CoreLocation
 import FBSDKLoginKit
 import FBSDKShareKit
-import FBSDKMessengerShareKit
 
 
 
@@ -47,8 +45,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate{
         
     }
     @IBAction func didTapMess(sender: AnyObject) {
-        let image = UIImage(named: "MasqueParty1.png")!
-        FBSDKMessengerSharer.share(image, with: nil)
+        let image = UIImage(named: "MasqueParty.png")!
+//        FBSDKMessengerSharer.share(image, with: nil)
     }
    
     @IBAction func mula(sender: AnyObject) {
@@ -78,23 +76,23 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate{
     @IBAction func points(sender: AnyObject) {
         if user?.email != nil {
 
-            ref.child("user_profile").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let numco = self.numca.first {
-                
-                if var input:Int = Int(numco) {
-                    
-                    input += 150
-                    self.ref.child("user_profile").child("\(self.user!.uid)/points").setValue("\(input)")
-                    
-                }else{
-                  
-                }
-            }else{
-                
-            }
-            
-            
-        })
+//            ref.child("user_profile").observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let numco = self.numca.first {
+//
+//                if var input:Int = Int(numco) {
+//
+//                    input += 150
+//                    self.ref.child("user_profile").child("\(self.user!.uid)/points").setValue("\(input)")
+//
+//                }else{
+//
+//                }
+//            }else{
+//
+//            }
+//
+//
+//        })
         }else{
             errorLabel.isHidden = false
             closeButton.isHidden = false
@@ -141,7 +139,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate{
             let viewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "BIO")
             self.present(viewController, animated: true, completion: nil)
         
-        self.ref.child("user_profile").child("\(self.user!.uid)/uides").setValue(self.user!.uid)
+//        self.ref.child("user_profile").child("\(self.user!.uid)/uides").setValue(self.user!.uid)
         }else{
             globalusers[0] = ""
         }
@@ -151,7 +149,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate{
     
     @IBAction func didTapLogout(sender: AnyObject) {
      if user?.email != nil{
-       self.ref.child("user_profile").child("\(self.user!.uid)/postalCity").removeValue()
+//       self.ref.child("user_profile").child("\(self.user!.uid)/postalCity").removeValue()
         
         try! Auth.auth().signOut()
         AccessToken.current = nil
@@ -164,13 +162,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate{
         self.present(viewController, animated: true, completion: nil)
         
      }else{
-        self.ref.child("user_profile").child("\("jtHIiFvY1LZgae6YquGgnAt9pfh2")/\(guestCoda[0])").removeValue()
+//        self.ref.child("user_profile").child("\("jtHIiFvY1LZgae6YquGgnAt9pfh2")/\(guestCoda[0])").removeValue()
         let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
         let viewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "MainView")
         self.present(viewController, animated: true, completion: nil)
         }
     }
-    var ref = Database.database().reference()
+//    var ref = Database.database().reference()
     var user = Auth.auth().currentUser
 var product_id: NSString?;
     
@@ -204,9 +202,9 @@ var product_id: NSString?;
         } else {
             print("Location services are not enabled")
             if self.user?.email != nil {
-                self.ref.child("user_profile").child("\(self.user!.uid)/postalCity").removeValue()
+//                self.ref.child("user_profile").child("\(self.user!.uid)/postalCity").removeValue()
             }else{
-                self.ref.child("user_profile").child("\("jtHIiFvY1LZgae6YquGgnAt9pfh2")/\(guestCoda[0])").setValue("")
+//                self.ref.child("user_profile").child("\("jtHIiFvY1LZgae6YquGgnAt9pfh2")/\(guestCoda[0])").setValue("")
             }
 
         }
@@ -216,68 +214,68 @@ var product_id: NSString?;
         
         let userIDE: String = (Auth.auth().currentUser?.uid)!
         
-        ref.child("user_profile").child(userIDE).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let value = snapshot.value as? [String: Any] {
-                let ntm = value["appendNo"] as? String
-            
-                if ntm == nil || ntm == "" || ntm == "1" {
-                    self.ref.child("user_profile").child("\(userIDE)/appendNo").setValue("0")
-                
-                }
-            }
-            
-        })
-        ref.child("user_profile").child(userIDE).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let value = snapshot.value as? [String: Any] {
-            
-                let nrm = value["appendNa"] as? String
-            
-                if nrm == nil || nrm == "" || nrm == "1" {
-                    self.ref.child("user_profile").child("\(userIDE)/appendNa").setValue("0")
-                
-                }
-                
-            }
-            
-        })
+//        ref.child("user_profile").child(userIDE).observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let value = snapshot.value as? [String: Any] {
+//                let ntm = value["appendNo"] as? String
+//
+//                if ntm == nil || ntm == "" || ntm == "1" {
+//                    self.ref.child("user_profile").child("\(userIDE)/appendNo").setValue("0")
+//
+//                }
+//            }
+//
+//        })
+//        ref.child("user_profile").child(userIDE).observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let value = snapshot.value as? [String: Any] {
+//
+//                let nrm = value["appendNa"] as? String
+//
+//                if nrm == nil || nrm == "" || nrm == "1" {
+//                    self.ref.child("user_profile").child("\(userIDE)/appendNa").setValue("0")
+//
+//                }
+//
+//            }
+//
+//        })
 
         
         
         
-        self.ref.child("user_profile").child("\(self.user!.uid)/uids").setValue(userIDE)
+//        self.ref.child("user_profile").child("\(self.user!.uid)/uids").setValue(userIDE)
         
-        _ = self.ref.child("user_profile").observe(DataEventType.value, with: { (snapshot) in
-        let usersDict = snapshot.value as! NSDictionary
-       
-
-            let userDetails = usersDict.object(forKey: userIDE)
-        
-            let nam = (userDetails! as AnyObject).value(forKey: "views") as? String
-            let ndm = (userDetails! as AnyObject).value(forKey: "postViews") as? String
-            let nom = (userDetails! as AnyObject).value(forKey: "points") as? String
-            let place = (userDetails! as AnyObject).value(forKey: "postalCity") as? String
-
-            if nom == nil || nom == ""{
-                self.ref.child("user_profile").child("\(userIDE)/points").setValue("0")
-             
-            }else{
-                self.pointNum.text = "\(numberFormatter.string(from: NSNumber(value: Int(nom!)!))!)"
-                self.numca[0] = "\(nom!)"
-            }
-            if nam == nil || nam == ""{
-                self.ref.child("user_profile").child("\(userIDE)/views").setValue("0")
-                
-            }else{
-                self.pointView.text = "\(numberFormatter.string(from: NSNumber(value: Int(nam!)!))!)"
-            }
-            if place == nil || place == ""{
-                 self.ref.child("user_profile").child("\(userIDE)/postalCity").setValue(self.thaCity[0])
-                
-            }
-            if ndm == nil || ndm == ""{
-                self.ref.child("user_profile").child("\(userIDE)/postViews").setValue("0")
-            }
-            })
+//        _ = self.ref.child("user_profile").observe(DataEventType.value, with: { (snapshot) in
+//        let usersDict = snapshot.value as! NSDictionary
+//
+//
+//            let userDetails = usersDict.object(forKey: userIDE)
+//
+//            let nam = (userDetails! as AnyObject).value(forKey: "views") as? String
+//            let ndm = (userDetails! as AnyObject).value(forKey: "postViews") as? String
+//            let nom = (userDetails! as AnyObject).value(forKey: "points") as? String
+//            let place = (userDetails! as AnyObject).value(forKey: "postalCity") as? String
+//
+//            if nom == nil || nom == ""{
+//                self.ref.child("user_profile").child("\(userIDE)/points").setValue("0")
+//
+//            }else{
+//                self.pointNum.text = "\(numberFormatter.string(from: NSNumber(value: Int(nom!)!))!)"
+//                self.numca[0] = "\(nom!)"
+//            }
+//            if nam == nil || nam == ""{
+//                self.ref.child("user_profile").child("\(userIDE)/views").setValue("0")
+//
+//            }else{
+//                self.pointView.text = "\(numberFormatter.string(from: NSNumber(value: Int(nam!)!))!)"
+//            }
+//            if place == nil || place == ""{
+//                 self.ref.child("user_profile").child("\(userIDE)/postalCity").setValue(self.thaCity[0])
+//
+//            }
+//            if ndm == nil || ndm == ""{
+//                self.ref.child("user_profile").child("\(userIDE)/postViews").setValue("0")
+//            }
+//            })
            
         
     
@@ -294,7 +292,7 @@ var product_id: NSString?;
            
             self.profileName.text = name
             
-            self.ref.child("user_profile").child("\(user.uid)/name").setValue(name)
+//            self.ref.child("user_profile").child("\(user.uid)/name").setValue(name)
           self.navigationItem.title = "#masqueparty"
          
 //            self.navigationController?.navigationBar.tintColor = UIColor.yellow
@@ -364,7 +362,7 @@ var product_id: NSString?;
                                     // Uh-oh, an error occurred!
                                     return
                                   }
-                                    self.ref.child("user_profile").child("\(user.uid)/profile_pic_small").setValue(downloadURL.absoluteString)
+//                                    self.ref.child("user_profile").child("\(user.uid)/profile_pic_small").setValue(downloadURL.absoluteString)
                                 }
                              
                             }else{
@@ -434,11 +432,11 @@ var product_id: NSString?;
                         if let theName = p.name {
                         
                       
-                         self.ref.child("user_profile").child("\(self.user!.uid)/postalCity").setValue(theName)
+//                         self.ref.child("user_profile").child("\(self.user!.uid)/postalCity").setValue(theName)
                          checkarea[0] = "\(theName)"
                     }else{
                        
-                         self.ref.child("user_profile").child("\(self.user!.uid)/postalCity").setValue(theCity)
+//                         self.ref.child("user_profile").child("\(self.user!.uid)/postalCity").setValue(theCity)
                         checkarea[0] = "\(String(describing: theCity))"
                     }
                      }               
