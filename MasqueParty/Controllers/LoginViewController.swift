@@ -33,8 +33,8 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
-        loadingSpinner.isHidden = true
-        loginButton.isHidden = false
+        showLoginButton()
+        showLoadingSpinner(false)
         loginButton.center = self.view.center
         loginButton.permissions = ["public_profile", "user_friends"]
         view.addSubview(self.loginButton)
@@ -44,21 +44,35 @@ class LoginViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
+    func showLoginButton(_ show: Bool = true) {
+        loginButton.isHidden = !show
+    }
+    
+    func showLoadingSpinner(_ show: Bool = true){
+        loadingSpinner.isHidden = !show
+    }
+    
     func startLoadingSpinner() {
-        loadingSpinner.isHidden = false
+        showLoadingSpinner()
         loadingSpinner.startAnimating()
     }
     
     func stopLoadingSpinner() {
         loadingSpinner.stopAnimating()
-        loadingSpinner.isHidden = true
+        showLoadingSpinner(false)
+    }
+    
+    @available(iOS 13.0, *)
+    func goTo(_ storyboardId: String){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(identifier: storyboardId)
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(controller)
     }
 }
 
 
 
 //MARK: - LoginButtonDelegate
-
 
 extension LoginViewController : LoginButtonDelegate {
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
@@ -70,7 +84,6 @@ extension LoginViewController : LoginButtonDelegate {
     }
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-
         if let error = error {
             print(error.localizedDescription)
             return
@@ -91,7 +104,7 @@ extension LoginViewController : LoginButtonDelegate {
         if #available(iOS 13.0, *) {
             firebaseManager?.signIn(with: credential)
         }
-        
+        showLoginButton()
     }
 }
 
@@ -107,42 +120,16 @@ extension LoginViewController : FirebaseDelegate {
     
     func signInError(_ error: Error) {
         stopLoadingSpinner()
+        showLoginButton()
         self.showMessagePrompt(error.localizedDescription)
     }
     
     @available(iOS 13.0, *)
     func signInSuccess() {
-        print("Signed in")
-        
         DispatchQueue.main.async {
             self.stopLoadingSpinner()
-            self.loginButton.isHidden = true
             UserDefaults.standard.setValue(K.FStore.currentUserId, forKey: "uid")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-        
-        // This is to get the SceneDelegate object from your view controller
-        // then call the change root view controller function to change to main tab bar
-
-           // print("Flip 1", sceneDelegate)
-            //sceneDelegate?.changeRootViewController(mainTabBarController)
-            if let scene = UIApplication.shared.connectedScenes.first {
-
-                if let sceneDelegate = scene.delegate as? SceneDelegate {
-                    print("Flip 1", sceneDelegate)
-                    sceneDelegate.changeRootViewController(mainTabBarController)
-                }else{
-                    print("sceneDelegate is nil")
-                }
-               
-                
-            }
+            self.goTo("MainTabBarController")
         }
     }
-    
-    
-    
-    
-    
-    
 }
