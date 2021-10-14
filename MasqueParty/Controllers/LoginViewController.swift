@@ -104,7 +104,7 @@ extension LoginViewController : LoginButtonDelegate {
         if #available(iOS 13.0, *) {
             firebaseManager?.signIn(with: credential)
         }
-        showLoginButton()
+        showLoginButton(false)
     }
 }
 
