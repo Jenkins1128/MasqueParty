@@ -18,76 +18,79 @@ import FBSDKLoginKit
 
 
 class LoginViewController: UIViewController {
-    var handle : AuthStateDidChangeListenerHandle?
-    var loginButton = FBLoginButton()
+    @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     
-    @IBOutlet var loadingspinner: UIActivityIndicatorView!
+    var loginButton = FBLoginButton()
+    var firebaseManager : FirebaseManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loginButton.delegate = self
-        loginButton.isHidden = true
-        
+        firebaseManager = FirebaseManager()
+        firebaseManager?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
-        handle = Auth.auth().addStateDidChangeListener { auth, user in
-            if let user = user {
-                // User is signed in.
-                //next screen
-                //                let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
-                //                let homeViewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "HomeView")
-                //                self.present(homeViewController, animated: true, completion: nil)
-                
-                print("signed in")
-                
-            } else {
-                // No user is signed in.
-                //show log in button
-                self.loginButton.isHidden = false
-                self.loginButton.center = self.view.center
-                self.loginButton.permissions = ["public_profile", "email", "user_friends"]
-                
-                self.view!.addSubview(self.loginButton)
-                
-            }
-        }
+        loadingSpinner.isHidden = true
+        loginButton.isHidden = false
+        loginButton.center = self.view.center
+        loginButton.permissions = ["public_profile", "user_friends"]
+        view.addSubview(self.loginButton)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
-        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
+    func startLoadingSpinner() {
+        loadingSpinner.isHidden = false
+        loadingSpinner.startAnimating()
+    }
+    
+    func stopLoadingSpinner() {
+        loadingSpinner.stopAnimating()
+        loadingSpinner.isHidden = true
+    }
 }
 
 
 
 //MARK: - LoginButtonDelegate
 
+
 extension LoginViewController : LoginButtonDelegate {
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        
+    }
+    
+    func loginButtonWillLogin(_ loginButton: FBLoginButton) -> Bool {
+        startLoadingSpinner()
+        return true
     }
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        loadingspinner.startAnimating()
+
         if let error = error {
             print(error.localizedDescription)
-            loadingspinner.stopAnimating()
             return
         }
         
-        let credential = FacebookAuthProvider
-            .credential(withAccessToken: AccessToken.current!.tokenString)
-        let firebaseManager = FirebaseManager()
-        if(!firebaseManager.signIn(with: credential)){
+        guard let result = result else {
+            return
+        }
+        
+        if result.isCancelled {
+            stopLoadingSpinner()
             return
         }
 
+        let credential = FacebookAuthProvider
+            .credential(withAccessToken: AccessToken.current!.tokenString)
+        
+        if #available(iOS 13.0, *) {
+            firebaseManager?.signIn(with: credential)
+        }
         
     }
 }
@@ -102,81 +105,43 @@ extension LoginViewController : FirebaseDelegate {
        present(alert, animated: false, completion: nil)
      }
     
-    func showTextInputPrompt(withMessage message: String,
-                             completionBlock: @escaping ((Bool, String?) -> Void)) {
-      let prompt = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-      let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-        completionBlock(false, nil)
-      }
-      weak var weakPrompt = prompt
-      let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-        guard let text = weakPrompt?.textFields?.first?.text else { return }
-        completionBlock(true, text)
-      }
-      prompt.addTextField(configurationHandler: nil)
-      prompt.addAction(cancelAction)
-      prompt.addAction(okAction)
-      present(prompt, animated: true, completion: nil)
+    func signInError(_ error: Error) {
+        stopLoadingSpinner()
+        self.showMessagePrompt(error.localizedDescription)
     }
     
-    func signInError(_ error: Error) {
-        let authError = error as NSError
-        if authError.code == AuthErrorCode.secondFactorRequired.rawValue {
-            // The user is a multi-factor user. Second factor challenge is required.
-            let resolver = authError
-                .userInfo[AuthErrorUserInfoMultiFactorResolverKey] as! MultiFactorResolver
-            var displayNameString = ""
-            for tmpFactorInfo in resolver.hints {
-                displayNameString += tmpFactorInfo.displayName ?? ""
-                displayNameString += " "
-            }
-            self.showTextInputPrompt(
-                withMessage: "Select factor to sign in\n\(displayNameString)",
-                completionBlock: { userPressedOK, displayName in
-                    var selectedHint: PhoneMultiFactorInfo?
-                    for tmpFactorInfo in resolver.hints {
-                        if displayName == tmpFactorInfo.displayName {
-                            selectedHint = tmpFactorInfo as? PhoneMultiFactorInfo
-                        }
-                    }
-                    PhoneAuthProvider.provider()
-                        .verifyPhoneNumber(with: selectedHint!, uiDelegate: nil,
-                                           multiFactorSession: resolver
-                                            .session) { verificationID, error in
-                            if error != nil {
-                                print(
-                                    "Multi factor start sign in failed. Error: \(error.debugDescription)"
-                                )
-                            } else {
-                                self.showTextInputPrompt(
-                                    withMessage: "Verification code for \(selectedHint?.displayName ?? "")",
-                                    completionBlock: { userPressedOK, verificationCode in
-                                        let credential: PhoneAuthCredential? = PhoneAuthProvider.provider()
-                                            .credential(withVerificationID: verificationID!,
-                                                        verificationCode: verificationCode!)
-                                        let assertion: MultiFactorAssertion? = PhoneMultiFactorGenerator
-                                            .assertion(with: credential!)
-                                        resolver.resolveSignIn(with: assertion!) { authResult, error in
-                                            if error != nil {
-                                                print(
-                                                    "Multi factor finanlize sign in failed. Error: \(error.debugDescription)"
-                                                )
-                                            } else {
-                                                self.navigationController?.popViewController(animated: true)
-                                            }
-                                        }
-                                    }
-                                )
-                            }
-                        }
-                }
-            )
-        } else {
-            self.showMessagePrompt(error.localizedDescription)
-            
-        }
+    @available(iOS 13.0, *)
+    func signInSuccess() {
+        print("Signed in")
         
+        DispatchQueue.main.async {
+            self.stopLoadingSpinner()
+            self.loginButton.isHidden = true
+            UserDefaults.standard.setValue(K.FStore.currentUserId, forKey: "uid")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+        
+        // This is to get the SceneDelegate object from your view controller
+        // then call the change root view controller function to change to main tab bar
+
+           // print("Flip 1", sceneDelegate)
+            //sceneDelegate?.changeRootViewController(mainTabBarController)
+            if let scene = UIApplication.shared.connectedScenes.first {
+
+                if let sceneDelegate = scene.delegate as? SceneDelegate {
+                    print("Flip 1", sceneDelegate)
+                    sceneDelegate.changeRootViewController(mainTabBarController)
+                }else{
+                    print("sceneDelegate is nil")
+                }
+               
+                
+            }
+        }
     }
+    
+    
+    
     
     
     

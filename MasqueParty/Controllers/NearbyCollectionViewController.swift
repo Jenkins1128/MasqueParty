@@ -7,73 +7,80 @@
 //
 
 import UIKit
-
 import Firebase
 import CoreLocation
 
-private let reuseIdentifier = "NearbyCollectionViewCell"
-
-
 class NearbyCollectionViewController: UICollectionViewController, CLLocationManagerDelegate {
 
-    
+    var firebaseManager = FirebaseManager()
 //    var databaseRef = Database.database().reference()
-     var usersDict = NSDictionary()
-      var usersDoct = NSDictionary()
-     var manager: CLLocationManager!
-   
-    lazy var userAreas = [""]
-    
-    lazy var userNamesArray = [String]()
-     lazy var userImagesArray = [String]()
-     lazy var userScores = [String]()
-    lazy var userViews = [String]()
-     lazy var userIDS = [String]()
-    let theuser = Auth.auth().currentUser
+//     var usersDict = NSDictionary()
+//      var usersDoct = NSDictionary()
+//     var manager: CLLocationManager!
+//
+//    lazy var userAreas = [""]
+//
+//    lazy var userNamesArray = [String]()
+//     lazy var userImagesArray = [String]()
+//     lazy var userScores = [String]()
+//    lazy var userViews = [String]()
+//     lazy var userIDS = [String]()
+    let theuser = K.FStore.currentUser
     
 //    var ref = Database.database().reference()
    
 
     @IBOutlet var nearbyLoading: UIActivityIndicatorView!
+    
+    
+    @IBAction func signoutPressed(_ sender: UIBarButtonItem) {
+        if #available(iOS 13.0, *) {
+            firebaseManager.signOut()
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
+        collectionView.register(UINib(nibName: K.CellInfo.nearbyCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CellInfo.nearbyCellIdentifier)
         
+        //tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
        
         
-         self.nearbyLoading.startAnimating()
-        let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 480, height: 44))
-        label.numberOfLines = 2
-        self.navigationItem.titleView = label
-        label.font = UIFont.boldSystemFont(ofSize: 17.0)
-        label.textAlignment = .left
-        label.textColor = UIColor.blue
-        if CLLocationManager.locationServicesEnabled() {
-            switch(CLLocationManager.authorizationStatus()) {
-            case .notDetermined, .restricted, .denied:
-                print("No access")
-                label.text = "Enable Location Services"
-            case .authorizedAlways, .authorizedWhenInUse:
-                print("Access")
-               
-      
-            @unknown default:
-                print("No access")
-            }
-        } else {
-            print("Location services are not enabled")
-            label.text = "Enable Location Services"
-            if self.theuser?.email != nil {
+//         self.nearbyLoading.startAnimating()
+//        let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 480, height: 44))
+//        label.numberOfLines = 2
+//        self.navigationItem.titleView = label
+//        label.font = UIFont.boldSystemFont(ofSize: 17.0)
+//        label.textAlignment = .left
+//        label.textColor = UIColor.blue
+//        if CLLocationManager.locationServicesEnabled() {
+//            switch(CLLocationManager.authorizationStatus()) {
+//            case .notDetermined, .restricted, .denied:
+//                print("No access")
+//                label.text = "Enable Location Services"
+//            case .authorizedAlways, .authorizedWhenInUse:
+//                print("Access")
+//
+//
+//            @unknown default:
+//                print("No access")
+//            }
+//        } else {
+//            print("Location services are not enabled")
+//            label.text = "Enable Location Services"
+            //if self.theuser?.email != nil {
 //                self.ref.child("user_profile").child("\(self.theuser!.uid)/postalCity").removeValue()
                 
-            }else{
+            //}else{
 //                self.ref.child("user_profile").child("\("jtHIiFvY1LZgae6YquGgnAt9pfh2")/\(guestCoda[0])").setValue("")
-            }
+            //}
 
         }
       
         
-        if self.theuser?.email != nil {
+  //      if self.theuser?.email != nil {
 //            self.databaseRef.child("user_profile").observeSingleEvent(of: .value, with :{
 //            (snapshot)  in
 //            self.usersDict = (snapshot.value as? NSDictionary)!
@@ -168,28 +175,19 @@ class NearbyCollectionViewController: UICollectionViewController, CLLocationMana
 //
 //        })
             
-            self.nearbyLoading.startAnimating()
-            label.text = "Looking for people in your location..."
+//            self.nearbyLoading.startAnimating()
+//            label.text = "Looking for people in your location..."
             
         
-        }
+   //     }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
         
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: 375, height: 54)
-    }
-  
+  //  }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     /*
     // MARK: - Navigation
@@ -211,24 +209,24 @@ class NearbyCollectionViewController: UICollectionViewController, CLLocationMana
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return self.userNamesArray.count
+        return 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! NearbyCollectionViewCell
-        
-            if let imageUrl = NSURL(string:userImagesArray[indexPath.row]){
-            
-                if let imageData = NSData(contentsOf: imageUrl as URL){
-            
-                    cell.nearbyImage.image = UIImage(data:imageData as Data)
-            cell.nearbyUser.text = userNamesArray[indexPath.row]
-            cell.score.text = userScores[indexPath.row]
-            cell.views.text = userViews[indexPath.row]
-            cell.uids.text = userIDS[indexPath.row]
-                }
-            }
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellInfo.nearbyCellIdentifier, for: indexPath as IndexPath) as! NearbyCollectionViewCell
+//
+//            if let imageUrl = NSURL(string:userImagesArray[indexPath.row]){
+//
+//                if let imageData = NSData(contentsOf: imageUrl as URL){
+//
+//                    cell.nearbyImage.image = UIImage(data:imageData as Data)
+//            cell.nearbyUser.text = userNamesArray[indexPath.row]
+//            cell.score.text = userScores[indexPath.row]
+//            cell.views.text = userViews[indexPath.row]
+//            cell.uids.text = userIDS[indexPath.row]
+//                }
+//            }
+//
             return cell
     }
    

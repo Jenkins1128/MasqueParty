@@ -141,7 +141,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate{
         
 //        self.ref.child("user_profile").child("\(self.user!.uid)/uides").setValue(self.user!.uid)
         }else{
-            globalusers[0] = ""
+//            globalusers[0] = ""
         }
     }
     @IBOutlet weak var profileName: UILabel!

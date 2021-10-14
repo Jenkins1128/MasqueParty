@@ -23,6 +23,7 @@
 		E93E3F211D789A0100A88132 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E93E3F201D789A0100A88132 /* SystemConfiguration.framework */; };
 		E93E3F231D789A0C00A88132 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E93E3F221D789A0C00A88132 /* SafariServices.framework */; };
 		E9545C8B2716A39A0002CBF3 /* NearbyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9545C8A2716A39A0002CBF3 /* NearbyCollectionViewCell.xib */; };
+		E9545C8D2717734C0002CBF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9545C8C2717734B0002CBF3 /* SceneDelegate.swift */; };
 		E96C960427149A4100E1186D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E96C960327149A4100E1186D /* GoogleService-Info.plist */; };
 		E9706301270CC3410068ABB5 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = E9706300270CC3410068ABB5 /* FacebookCore */; };
 		E9706303270CC3410068ABB5 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = E9706302270CC3410068ABB5 /* FacebookLogin */; };
@@ -65,6 +66,7 @@
 		E93E3F201D789A0100A88132 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E93E3F221D789A0C00A88132 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		E9545C8A2716A39A0002CBF3 /* NearbyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearbyCollectionViewCell.xib; sourceTree = "<group>"; };
+		E9545C8C2717734B0002CBF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E96C960327149A4100E1186D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E98CA1CD1DB54CCB002D3AA6 /* MasqueParty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MasqueParty.entitlements; sourceTree = "<group>"; };
 		E994EBC2270FBB5100FE71AA /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				E9EABA1F1D4C7AA500B3FB1D /* AppDelegate.swift */,
+				E9545C8C2717734B0002CBF3 /* SceneDelegate.swift */,
 				E994EBC0270F71AE00FE71AA /* Models */,
 				E994EBBF270F718400FE71AA /* Views */,
 				E994EBBE270F716A00FE71AA /* Controllers */,
@@ -410,6 +413,7 @@
 				E9E5F1271D53BB7100768848 /* HomeViewController.swift in Sources */,
 				E90F718C1D7942210015E605 /* NearbyCollectionViewController.swift in Sources */,
 				E90F718E1D7942CE0015E605 /* NearbyCollectionViewCell.swift in Sources */,
+				E9545C8D2717734C0002CBF3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,7 +560,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_HEADERS_RUN_UNIFDEF = NO;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 2ZW8D4GCGX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -592,7 +596,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_HEADERS_RUN_UNIFDEF = NO;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 2ZW8D4GCGX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
