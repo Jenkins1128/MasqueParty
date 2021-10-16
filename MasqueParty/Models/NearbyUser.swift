@@ -9,6 +9,6 @@
 import Foundation
 
 struct NearbyUser {
-    let userProfilePicURL: String
     let uid: String
+    let userProfilePicURL: String
 }

@@ -9,14 +9,9 @@
 import Foundation
 import CoreLocation
 
-protocol LocationManagerDelegate {
-    func setLabelText(_ text: String)
-}
-
 struct LocationManager {
     
-    var manager : CLLocationManager!
-    var delegate : LocationManagerDelegate?
+    var manager = CLLocationManager()
     
     func checkIfLocationEnabled() -> Bool {
         if CLLocationManager.locationServicesEnabled() {
@@ -35,6 +30,14 @@ struct LocationManager {
     
     func requestPermission() {
         manager.requestWhenInUseAuthorization()
+    }
+    
+    func requestLocation() {
+        manager.requestLocation()
+    }
+    
+    func stopUpdatingLocation() {
+        manager.stopUpdatingLocation()
     }
     
 }

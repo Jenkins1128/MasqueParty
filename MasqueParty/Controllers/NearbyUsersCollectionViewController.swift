@@ -8,28 +8,13 @@
 
 import UIKit
 import Firebase
-
+import CoreLocation
 
 class NearbyUsersCollectionViewController: UICollectionViewController {
 
     var firebaseManager = FirebaseManager()
     var locationManager = LocationManager()
     var nearbyUsers : [NearbyUser] = []
-//    var databaseRef = Database.database().reference()
-//     var usersDict = NSDictionary()
-//      var usersDoct = NSDictionary()
-//     var manager: CLLocationManager!
-//
-//    lazy var userAreas = [""]
-//
-//    lazy var userNamesArray = [String]()
-//     lazy var userImagesArray = [String]()
-//     lazy var userScores = [String]()
-//    lazy var userViews = [String]()
-//     lazy var userIDS = [String]()
-//    let theuser = K.FStore.currentUser
-    
-//    var ref = Database.database().reference()
    
 
     @IBOutlet var nearbyLoading: UIActivityIndicatorView!
@@ -43,19 +28,25 @@ class NearbyUsersCollectionViewController: UICollectionViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //nearbyLoading.startAnimating()
         
-        //ask for user location once
+        
+        locationManager.requestPermission()
+       
+        navigationController?.title = "Searching nearby..."
+        startLoadingSpinner()
         
         //check if location services is on
-            //get postalCity using CoreLocation and update current user's postalCity in firestore
+        if locationManager.checkIfLocationEnabled() {
+            //get postalCity using CoreLocation
+            locationManager.requestLocation()
             
-            //get once, query where postalCity, not current uid, limit 20
             
-            //populate nearbyUsers array
+        }else{
+            //else set nav title to Enable location services...
+            navigationController?.title = "Enable location services..."
+        }
             
-            //reload collection view data
-        //else set nav title to Enable location services...
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,30 +56,28 @@ class NearbyUsersCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
-        
+        firebaseManager.delegate = self
+        locationManager.manager.delegate = self
         collectionView.register(UINib(nibName: K.CellInfo.nearbyCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CellInfo.nearbyCellIdentifier)
-        
-//        if !locationManager.checkIfLocationEnabled() {
-//            navigationController
-//            return
-//        }
-       
+
 
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    func startLoadingSpinner() {
+        showLoadingSpinner()
+        nearbyLoading.startAnimating()
     }
-    */
+    
+    func stopLoadingSpinner() {
+        nearbyLoading.stopAnimating()
+        showLoadingSpinner(false)
+    }
+    
+    func showLoadingSpinner(_ show: Bool = true){
+        nearbyLoading.isHidden = !show
+    }
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -96,7 +85,7 @@ class NearbyUsersCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return nearbyUsers.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -106,7 +95,7 @@ class NearbyUsersCollectionViewController: UICollectionViewController {
             cell.nearbyImage.image = UIImage(data:imageData as Data)
             cell.uid = nearbyUsers[indexPath.row].uid
         }
-            return cell
+        return cell
     }
    
 
@@ -143,12 +132,82 @@ class NearbyUsersCollectionViewController: UICollectionViewController {
 
 }
 
+// MARK: - FirebaseDelegate
 
+extension NearbyUsersCollectionViewController : FirebaseDelegate {
+    func clearNearbyUsers() {
+        nearbyUsers = []
+    }
+    
+    func addNearbyUser(_ nearbyUserId: String, _ profilePicURL: String) {
+        let newUser = NearbyUser(uid: nearbyUserId, userProfilePicURL: profilePicURL)
+        self.nearbyUsers.append(newUser)
+        print("newUser", newUser)
+    }
+    
+    func refreshCollectionView() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            if self.nearbyUsers.count > 0 {
+                let indexPath = IndexPath(row: self.nearbyUsers.count - 1, section: 1)
+                self.collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+            }
+        }
+    }
+    
+}
 
-extension NearbyUsersCollectionViewController : LocationManagerDelegate {
-    func setLabelText(_ text: String) {
-        navigationController?.title = text
+// MARK: - CLLocationManagerDelegate
+
+extension NearbyUsersCollectionViewController : CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if #available(iOS 14.0, *) {
+            if manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways {
+                locationManager.requestLocation()
+                startLoadingSpinner()
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.stopUpdatingLocation()
+        guard let location = locations.first else {
+            print("no location")
+            self.stopLoadingSpinner()
+            return
+        }
+        
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { placemarks, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                self.stopLoadingSpinner()
+                return
+            }
+            
+            if let firstPlacemark = placemarks?.first {
+        
+                var currentlocation = ""
+                if let name = firstPlacemark.name {
+                    currentlocation = name
+                } else {
+                    currentlocation = firstPlacemark.subAdministrativeArea ?? "no sub area"
+                }
+                //update current user's postalCity in firestore
+                self.firebaseManager.setDataForCurrentUser("postalCity", currentlocation)
+                //get once, query where postalCity, not current uid, limit 20
+                self.firebaseManager.queryForUsersInLocation(currentlocation)
+                self.stopLoadingSpinner()
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
     
     
+    
 }
+
+
