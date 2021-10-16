@@ -11,6 +11,7 @@ import UIKit
 class NearbyCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var nearbyImage: UIImageView!
+    var uid: String?
 
     override func awakeFromNib() {
         super.awakeFromNib()
