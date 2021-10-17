@@ -10,7 +10,7 @@
 		AE72C48B9D6B89F768EA1FB1 /* Pods_MasqueParty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67C8E6CEA6D7C058B56C0F4F /* Pods_MasqueParty.framework */; };
 		E90568611DA8B584001A46E2 /* WazzupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90568601DA8B584001A46E2 /* WazzupViewController.swift */; };
 		E90568631DA8BFC3001A46E2 /* WazzupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90568621DA8BFC3001A46E2 /* WazzupCollectionViewCell.swift */; };
-		E90F718C1D7942210015E605 /* NearbyUsersCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90F718B1D7942210015E605 /* NearbyUsersCollectionViewController.swift */; };
+		E90F718C1D7942210015E605 /* NearbyUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90F718B1D7942210015E605 /* NearbyUsersViewController.swift */; };
 		E90F718E1D7942CE0015E605 /* NearbyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90F718D1D7942CE0015E605 /* NearbyCollectionViewCell.swift */; };
 		E910ED0C1DA9445700673A94 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E910ED0B1DA9445700673A94 /* PostViewController.swift */; };
 		E911ED991D905E4000BA97F7 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E911ED981D905E4000BA97F7 /* CoreTelephony.framework */; };
@@ -54,7 +54,7 @@
 		67C8E6CEA6D7C058B56C0F4F /* Pods_MasqueParty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasqueParty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90568601DA8B584001A46E2 /* WazzupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WazzupViewController.swift; sourceTree = "<group>"; };
 		E90568621DA8BFC3001A46E2 /* WazzupCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WazzupCollectionViewCell.swift; sourceTree = "<group>"; };
-		E90F718B1D7942210015E605 /* NearbyUsersCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyUsersCollectionViewController.swift; sourceTree = "<group>"; };
+		E90F718B1D7942210015E605 /* NearbyUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyUsersViewController.swift; sourceTree = "<group>"; };
 		E90F718D1D7942CE0015E605 /* NearbyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyCollectionViewCell.swift; sourceTree = "<group>"; };
 		E910ED0B1DA9445700673A94 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		E911ED981D905E4000BA97F7 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -171,7 +171,7 @@
 				E910ED0B1DA9445700673A94 /* PostViewController.swift */,
 				E90568601DA8B584001A46E2 /* WazzupViewController.swift */,
 				E90568621DA8BFC3001A46E2 /* WazzupCollectionViewCell.swift */,
-				E90F718B1D7942210015E605 /* NearbyUsersCollectionViewController.swift */,
+				E90F718B1D7942210015E605 /* NearbyUsersViewController.swift */,
 				E9EAC5E71D62ADAC00ED8346 /* InfoViewController.swift */,
 				E9E5F1261D53BB7100768848 /* HomeViewController.swift */,
 			);
@@ -418,7 +418,7 @@
 				E910ED0C1DA9445700673A94 /* PostViewController.swift in Sources */,
 				E90568631DA8BFC3001A46E2 /* WazzupCollectionViewCell.swift in Sources */,
 				E9E5F1271D53BB7100768848 /* HomeViewController.swift in Sources */,
-				E90F718C1D7942210015E605 /* NearbyUsersCollectionViewController.swift in Sources */,
+				E90F718C1D7942210015E605 /* NearbyUsersViewController.swift in Sources */,
 				E90F718E1D7942CE0015E605 /* NearbyCollectionViewCell.swift in Sources */,
 				E9545C8D2717734C0002CBF3 /* SceneDelegate.swift in Sources */,
 				E9545C8F271947080002CBF3 /* LocationManager.swift in Sources */,

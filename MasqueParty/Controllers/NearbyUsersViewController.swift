@@ -10,14 +10,14 @@ import UIKit
 import Firebase
 import CoreLocation
 
-class NearbyUsersCollectionViewController: UICollectionViewController {
+class NearbyUsersViewController: UIViewController {
 
     var firebaseManager = FirebaseManager()
     var locationManager = LocationManager()
     var nearbyUsers : [NearbyUser] = []
    
-
     @IBOutlet var nearbyLoading: UIActivityIndicatorView!
+    @IBOutlet weak var nearbyUsersCollectionView: UICollectionView!
     
     
     @IBAction func signoutPressed(_ sender: UIBarButtonItem) {
@@ -32,7 +32,7 @@ class NearbyUsersCollectionViewController: UICollectionViewController {
         
         locationManager.requestPermission()
        
-        navigationController?.title = "Searching nearby..."
+        setTitle("Searching nearby...")
         startLoadingSpinner()
         
         //check if location services is on
@@ -43,7 +43,7 @@ class NearbyUsersCollectionViewController: UICollectionViewController {
             
         }else{
             //else set nav title to Enable location services...
-            navigationController?.title = "Enable location services..."
+            setTitle("Enable location services...")
         }
             
         
@@ -58,8 +58,8 @@ class NearbyUsersCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         firebaseManager.delegate = self
         locationManager.manager.delegate = self
-        collectionView.register(UINib(nibName: K.CellInfo.nearbyCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CellInfo.nearbyCellIdentifier)
-
+        
+        nearbyUsersCollectionView.register(UINib(nibName: K.CellInfo.nearbyCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CellInfo.nearbyCellIdentifier)
 
     }
     
@@ -76,30 +76,42 @@ class NearbyUsersCollectionViewController: UICollectionViewController {
     func showLoadingSpinner(_ show: Bool = true){
         nearbyLoading.isHidden = !show
     }
-
-    // MARK: - UICollectionViewDataSource
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func setTitle(_ title: String){
+        navigationItem.title = title
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension NearbyUsersViewController : UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return nearbyUsers.count
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellInfo.nearbyCellIdentifier, for: indexPath as IndexPath) as! NearbyCollectionViewCell
         if let userProfilePicURL = NSURL(string: nearbyUsers[indexPath.row].userProfilePicURL) as URL?,
            let imageData = NSData(contentsOf: userProfilePicURL) {
             cell.nearbyImage.image = UIImage(data:imageData as Data)
             cell.uid = nearbyUsers[indexPath.row].uid
         }
+        
         return cell
     }
-   
+}
 
-    // MARK: UICollectionViewDelegate
+
+// MARK: - UICollectionViewDelegate
+
+extension NearbyUsersViewController : UICollectionViewDelegate {
+    
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
@@ -129,12 +141,11 @@ class NearbyUsersCollectionViewController: UICollectionViewController {
     
     }
     */
-
 }
 
 // MARK: - FirebaseDelegate
 
-extension NearbyUsersCollectionViewController : FirebaseDelegate {
+extension NearbyUsersViewController : FirebaseDelegate {
     func clearNearbyUsers() {
         nearbyUsers = []
     }
@@ -147,10 +158,10 @@ extension NearbyUsersCollectionViewController : FirebaseDelegate {
     
     func refreshCollectionView() {
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
+            self.nearbyUsersCollectionView.reloadData()
             if self.nearbyUsers.count > 0 {
                 let indexPath = IndexPath(row: self.nearbyUsers.count - 1, section: 1)
-                self.collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+                self.nearbyUsersCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
             }
         }
     }
@@ -159,7 +170,7 @@ extension NearbyUsersCollectionViewController : FirebaseDelegate {
 
 // MARK: - CLLocationManagerDelegate
 
-extension NearbyUsersCollectionViewController : CLLocationManagerDelegate {
+extension NearbyUsersViewController : CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         if #available(iOS 14.0, *) {
             if manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways {
@@ -172,7 +183,7 @@ extension NearbyUsersCollectionViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager.stopUpdatingLocation()
         guard let location = locations.first else {
-            print("no location")
+            setTitle("No Location")
             self.stopLoadingSpinner()
             return
         }
@@ -186,17 +197,12 @@ extension NearbyUsersCollectionViewController : CLLocationManagerDelegate {
             }
             
             if let firstPlacemark = placemarks?.first {
-        
-                var currentlocation = ""
-                if let name = firstPlacemark.name {
-                    currentlocation = name
-                } else {
-                    currentlocation = firstPlacemark.subAdministrativeArea ?? "no sub area"
-                }
+                let currentlocation = firstPlacemark.subAdministrativeArea ?? "no sub area"
                 //update current user's postalCity in firestore
                 self.firebaseManager.setDataForCurrentUser("postalCity", currentlocation)
                 //get once, query where postalCity, not current uid, limit 20
                 self.firebaseManager.queryForUsersInLocation(currentlocation)
+                self.setTitle(currentlocation)
                 self.stopLoadingSpinner()
             }
         }
