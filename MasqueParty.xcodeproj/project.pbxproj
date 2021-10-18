@@ -46,7 +46,6 @@
 		E9EABA251D4C7AA500B3FB1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9EABA231D4C7AA500B3FB1D /* Main.storyboard */; };
 		E9EABA2A1D4C7AA500B3FB1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9EABA291D4C7AA500B3FB1D /* Assets.xcassets */; };
 		E9EABA2D1D4C7AA500B3FB1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9EABA2B1D4C7AA500B3FB1D /* LaunchScreen.storyboard */; };
-		E9EAC5E81D62ADAC00ED8346 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EAC5E71D62ADAC00ED8346 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,7 +91,6 @@
 		E9EABA291D4C7AA500B3FB1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9EABA2C1D4C7AA500B3FB1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9EABA2E1D4C7AA500B3FB1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E9EAC5E71D62ADAC00ED8346 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		ED65E18396A5EB3C05956B9A /* Pods-MasqueParty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasqueParty.debug.xcconfig"; path = "Target Support Files/Pods-MasqueParty/Pods-MasqueParty.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,7 +170,6 @@
 				E90568601DA8B584001A46E2 /* WazzupViewController.swift */,
 				E90568621DA8BFC3001A46E2 /* WazzupCollectionViewCell.swift */,
 				E90F718B1D7942210015E605 /* NearbyUsersViewController.swift */,
-				E9EAC5E71D62ADAC00ED8346 /* InfoViewController.swift */,
 				E9E5F1261D53BB7100768848 /* HomeViewController.swift */,
 			);
 			path = Controllers;
@@ -414,7 +411,6 @@
 				E994EBC5270FE7E700FE71AA /* Constants.swift in Sources */,
 				E90568611DA8B584001A46E2 /* WazzupViewController.swift in Sources */,
 				E9A0DA88271AAF9700B23FBC /* NearbyUser.swift in Sources */,
-				E9EAC5E81D62ADAC00ED8346 /* InfoViewController.swift in Sources */,
 				E910ED0C1DA9445700673A94 /* PostViewController.swift in Sources */,
 				E90568631DA8BFC3001A46E2 /* WazzupCollectionViewCell.swift in Sources */,
 				E9E5F1271D53BB7100768848 /* HomeViewController.swift in Sources */,

@@ -28,25 +28,17 @@ class NearbyUsersViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        
         locationManager.requestPermission()
-       
         setTitle("Searching nearby...")
         startLoadingSpinner()
-        
         //check if location services is on
         if locationManager.checkIfLocationEnabled() {
             //get postalCity using CoreLocation
             locationManager.requestLocation()
-            
-            
         }else{
             //else set nav title to Enable location services...
             setTitle("Enable location services...")
         }
-            
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +50,6 @@ class NearbyUsersViewController: UIViewController {
         super.viewDidLoad()
         firebaseManager.delegate = self
         locationManager.manager.delegate = self
-        
         nearbyUsersCollectionView.register(UINib(nibName: K.CellInfo.nearbyCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CellInfo.nearbyCellIdentifier)
 
     }
@@ -85,7 +76,6 @@ class NearbyUsersViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 
 extension NearbyUsersViewController : UICollectionViewDataSource {
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -111,8 +101,6 @@ extension NearbyUsersViewController : UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension NearbyUsersViewController : UICollectionViewDelegate {
-    
-
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -211,9 +199,6 @@ extension NearbyUsersViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
     }
-    
-    
-    
 }
 
 
