@@ -30,6 +30,7 @@ struct K {
     struct FStore {
         static let usersCollection = "users"
         static let postsCollection = "posts"
+        static let profilePic = "profile_pic_small"
         static let currentUser = Auth.auth().currentUser
         static let currentUserId = Auth.auth().currentUser?.uid ?? ""
 //        static let senderField = "sender"

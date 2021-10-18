@@ -100,7 +100,7 @@ extension LoginViewController : LoginButtonDelegate {
 
         let credential = FacebookAuthProvider
             .credential(withAccessToken: AccessToken.current!.tokenString)
-        
+
         if #available(iOS 13.0, *) {
             firebaseManager?.signIn(with: credential)
         }

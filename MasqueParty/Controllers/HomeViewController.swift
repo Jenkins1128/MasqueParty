@@ -14,7 +14,6 @@ import Firebase
 import FBSDKCoreKit
 import CoreLocation
 import FBSDKLoginKit
-import FBSDKShareKit
 
 
 
