@@ -11,10 +11,16 @@ import UIKit
 class NearbyCollectionViewCell: UICollectionViewCell {
     @IBOutlet var nearbyImage: UIImageView!
     var uid: String?
-
+    
+    override var bounds: CGRect {
+        didSet {
+            layoutIfNeeded()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        nearbyImage.layer.masksToBounds = true
-        nearbyImage.layer.cornerRadius = self.nearbyImage.frame.size.width/1.5
     }
 }
+
+
