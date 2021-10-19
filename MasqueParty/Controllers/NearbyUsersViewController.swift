@@ -14,7 +14,11 @@ class NearbyUsersViewController: UIViewController {
 
     var firebaseManager = FirebaseManager()
     var locationManager = LocationManager()
-    var nearbyUsers : [NearbyUser] = []
+   var nearbyUsers : [NearbyUser] = []
+//    var nearbyUsers : [NearbyUser] = [
+//        NearbyUser(uid: "", userProfilePicURL: "https://www.pinclipart.com/picdir/big/167-1677865_facebook-button-image-facebook-small-icon-png-clipart.png"),
+//        NearbyUser(uid: "", userProfilePicURL: "https://www.pinclipart.com/picdir/big/167-1677865_facebook-button-image-facebook-small-icon-png-clipart.png")
+//    ]
    
     @IBOutlet var nearbyLoading: UIActivityIndicatorView!
     @IBOutlet weak var nearbyUsersCollectionView: UICollectionView!
@@ -101,6 +105,18 @@ extension NearbyUsersViewController : UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension NearbyUsersViewController : UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToUserProfile", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToUserProfile" {
+            let indexPath = sender as! IndexPath
+            let destitinationVC = segue.destination as! UserViewController
+            destitinationVC.uid = nearbyUsers[indexPath.row].uid
+        }
+    }
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {

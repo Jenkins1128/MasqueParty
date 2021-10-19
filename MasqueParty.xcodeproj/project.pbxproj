@@ -12,7 +12,7 @@
 		E90568631DA8BFC3001A46E2 /* WazzupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90568621DA8BFC3001A46E2 /* WazzupCollectionViewCell.swift */; };
 		E90F718C1D7942210015E605 /* NearbyUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90F718B1D7942210015E605 /* NearbyUsersViewController.swift */; };
 		E90F718E1D7942CE0015E605 /* NearbyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90F718D1D7942CE0015E605 /* NearbyCollectionViewCell.swift */; };
-		E910ED0C1DA9445700673A94 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E910ED0B1DA9445700673A94 /* PostViewController.swift */; };
+		E910ED0C1DA9445700673A94 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E910ED0B1DA9445700673A94 /* UserViewController.swift */; };
 		E911ED991D905E4000BA97F7 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E911ED981D905E4000BA97F7 /* CoreTelephony.framework */; };
 		E912C5CE1D8EFB17007DEB2B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E912C5CD1D8EFB17007DEB2B /* AVFoundation.framework */; };
 		E93E3F151D7899B300A88132 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E93E3F141D7899B300A88132 /* Accelerate.framework */; };
@@ -29,6 +29,7 @@
 		E9706301270CC3410068ABB5 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = E9706300270CC3410068ABB5 /* FacebookCore */; };
 		E9706303270CC3410068ABB5 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = E9706302270CC3410068ABB5 /* FacebookLogin */; };
 		E9706305270CC3410068ABB5 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = E9706304270CC3410068ABB5 /* FacebookShare */; };
+		E97BFA25271E28A90013E0FC /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97BFA24271E28A90013E0FC /* RoundedImageView.swift */; };
 		E994EBC3270FBB5100FE71AA /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994EBC2270FBB5100FE71AA /* FirebaseManager.swift */; };
 		E994EBC5270FE7E700FE71AA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994EBC4270FE7E700FE71AA /* Constants.swift */; };
 		E9A0DA88271AAF9700B23FBC /* NearbyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A0DA87271AAF9700B23FBC /* NearbyUser.swift */; };
@@ -55,7 +56,7 @@
 		E90568621DA8BFC3001A46E2 /* WazzupCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WazzupCollectionViewCell.swift; sourceTree = "<group>"; };
 		E90F718B1D7942210015E605 /* NearbyUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyUsersViewController.swift; sourceTree = "<group>"; };
 		E90F718D1D7942CE0015E605 /* NearbyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyCollectionViewCell.swift; sourceTree = "<group>"; };
-		E910ED0B1DA9445700673A94 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		E910ED0B1DA9445700673A94 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		E911ED981D905E4000BA97F7 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E912C5CD1D8EFB17007DEB2B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E93E3F141D7899B300A88132 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -70,6 +71,7 @@
 		E9545C8C2717734B0002CBF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E9545C8E271947080002CBF3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E96C960327149A4100E1186D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E97BFA24271E28A90013E0FC /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		E98CA1CD1DB54CCB002D3AA6 /* MasqueParty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MasqueParty.entitlements; sourceTree = "<group>"; };
 		E994EBC2270FBB5100FE71AA /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		E994EBC4270FE7E700FE71AA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -162,11 +164,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E97BFA23271E27860013E0FC /* Other Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E97BFA24271E28A90013E0FC /* RoundedImageView.swift */,
+			);
+			path = "Other Classes";
+			sourceTree = "<group>";
+		};
 		E994EBBE270F716A00FE71AA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				E9EABA211D4C7AA500B3FB1D /* LoginViewController.swift */,
-				E910ED0B1DA9445700673A94 /* PostViewController.swift */,
+				E910ED0B1DA9445700673A94 /* UserViewController.swift */,
 				E90568601DA8B584001A46E2 /* WazzupViewController.swift */,
 				E90568621DA8BFC3001A46E2 /* WazzupCollectionViewCell.swift */,
 				E90F718B1D7942210015E605 /* NearbyUsersViewController.swift */,
@@ -198,6 +208,7 @@
 		E994EBC1270F726F00FE71AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E97BFA23271E27860013E0FC /* Other Classes */,
 				E9EABA291D4C7AA500B3FB1D /* Assets.xcassets */,
 				E9EABA2B1D4C7AA500B3FB1D /* LaunchScreen.storyboard */,
 				E994EBC4270FE7E700FE71AA /* Constants.swift */,
@@ -409,9 +420,10 @@
 				E994EBC3270FBB5100FE71AA /* FirebaseManager.swift in Sources */,
 				E9EABA201D4C7AA500B3FB1D /* AppDelegate.swift in Sources */,
 				E994EBC5270FE7E700FE71AA /* Constants.swift in Sources */,
+				E97BFA25271E28A90013E0FC /* RoundedImageView.swift in Sources */,
 				E90568611DA8B584001A46E2 /* WazzupViewController.swift in Sources */,
 				E9A0DA88271AAF9700B23FBC /* NearbyUser.swift in Sources */,
-				E910ED0C1DA9445700673A94 /* PostViewController.swift in Sources */,
+				E910ED0C1DA9445700673A94 /* UserViewController.swift in Sources */,
 				E90568631DA8BFC3001A46E2 /* WazzupCollectionViewCell.swift in Sources */,
 				E9E5F1271D53BB7100768848 /* HomeViewController.swift in Sources */,
 				E90F718C1D7942210015E605 /* NearbyUsersViewController.swift in Sources */,
