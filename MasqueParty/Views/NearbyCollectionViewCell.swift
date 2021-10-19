@@ -12,11 +12,7 @@ class NearbyCollectionViewCell: UICollectionViewCell {
     @IBOutlet var nearbyImage: UIImageView!
     var uid: String?
     
-    override var bounds: CGRect {
-        didSet {
-            layoutIfNeeded()
-        }
-    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

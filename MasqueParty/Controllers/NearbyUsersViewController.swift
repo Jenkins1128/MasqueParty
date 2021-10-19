@@ -23,13 +23,6 @@ class NearbyUsersViewController: UIViewController {
     @IBOutlet var nearbyLoading: UIActivityIndicatorView!
     @IBOutlet weak var nearbyUsersCollectionView: UICollectionView!
     
-    
-    @IBAction func signoutPressed(_ sender: UIBarButtonItem) {
-        if #available(iOS 13.0, *) {
-            firebaseManager.signOut()
-        }
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         locationManager.requestPermission()

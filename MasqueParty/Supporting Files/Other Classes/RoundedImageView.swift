@@ -9,6 +9,12 @@
 import UIKit
 
 class RoundedImageView: UIImageView {
+    override var bounds: CGRect {
+        didSet {
+            layoutIfNeeded()
+        }
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         let radius = self.frame.width/2.0
