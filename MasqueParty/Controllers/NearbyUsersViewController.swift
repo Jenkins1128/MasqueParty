@@ -36,10 +36,14 @@ class NearbyUsersViewController: UIViewController {
         super.viewDidLoad()
         configureDelegates()
         configureRefreshControl()
-        nearbyUsersCollectionView.register(UINib(nibName: K.CellInfo.nearbyCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CellInfo.nearbyCellIdentifier)
+        registerCustomCollectionViewCell()
         locationManager.requestPermission()
         locationManager.searchNearbyForUsers()
         startRefreshing()
+    }
+    
+    func registerCustomCollectionViewCell() {
+        nearbyUsersCollectionView.register(UINib(nibName: K.CellInfo.nearbyCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CellInfo.nearbyCellIdentifier)
     }
     
     func configureDelegates() {
@@ -58,7 +62,6 @@ class NearbyUsersViewController: UIViewController {
     }
     
     @objc func resfreshNearbyUsers(refreshControl: UIRefreshControl) {
-        print("Refreshing")
         locationManager.searchNearbyForUsers()
     }
     
@@ -151,7 +154,7 @@ extension NearbyUsersViewController : CLLocationManagerDelegate {
         if #available(iOS 14.0, *) {
             if manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways {
                 locationManager.requestLocation()
-                //startLoadingSpinner()
+                setControllerTitle("Searching nearby...")
             }
         }
     }

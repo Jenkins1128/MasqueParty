@@ -14,36 +14,48 @@ import UIKit
 class ProfileViewController: UIViewController {
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var bio: UITextField!
-    @IBOutlet weak var profileLoadingSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var bio: UITextView!
     
+    @IBOutlet weak var profileScrollView: UIScrollView!
     var firebaseManager = FirebaseManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureDelegates()
+        configureRefreshControl()
+        configureTextViewLayer()
+        firebaseManager.readUserData()
+        startRefreshing()
+    }
+    
+    func configureDelegates() {
         firebaseManager.delegate = self
     }
-   
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    
+    func configureRefreshControl() {
+        profileScrollView.refreshControl = UIRefreshControl()
+        profileScrollView.refreshControl?.addTarget(self, action: #selector(refreshProfile), for: .valueChanged)
+        profileScrollView.refreshControl?.tintColor = .lightGray
+    }
+    
+    @objc func refreshProfile() {
         firebaseManager.readUserData()
-        startLoadingSpinner()
     }
     
-    func startLoadingSpinner() {
-        showLoadingSpinner()
-        profileLoadingSpinner.startAnimating()
+    func configureTextViewLayer() {
+        bio.layer.borderWidth = 1
+        bio.layer.borderColor = UIColor.lightGray.cgColor
+        bio.layer.cornerRadius = 10
     }
     
-    func stopLoadingSpinner() {
-        profileLoadingSpinner.stopAnimating()
-        showLoadingSpinner(false)
+    func startRefreshing() {
+        profileScrollView.refreshControl?.beginRefreshing()
     }
     
-    func showLoadingSpinner(_ show: Bool = true){
-        profileLoadingSpinner.isHidden = !show
+    func endRefreshing() {
+        profileScrollView.refreshControl?.endRefreshing()
     }
-    
+
     @IBAction func saveBio(_ sender: UIButton) {
         let bioText = bio.text ?? ""
         guard bioText.count > 0 else {
@@ -68,7 +80,6 @@ extension ProfileViewController : FirebaseDelegate {
         }
         print("profile updated")
         DispatchQueue.main.async {
-            self.stopLoadingSpinner()
             if let userProfilePicURL = NSURL(string: userData["profile_pic_small"] as! String) as URL?,
                let imageData = NSData(contentsOf: userProfilePicURL) {
                 self.profilePic.image =  UIImage(data:imageData as Data)
@@ -80,6 +91,7 @@ extension ProfileViewController : FirebaseDelegate {
             if bioString.count > 0 {
                 self.bio.text = bioString
             }
+            self.endRefreshing()
         }
     }
 }
