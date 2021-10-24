@@ -9,9 +9,13 @@
 import Foundation
 import CoreLocation
 
+protocol LocationManagerDelegate {
+    func setControllerTitle(_ title: String)
+}
+
 struct LocationManager {
-    
     var manager = CLLocationManager()
+    var delegate : LocationManagerDelegate?
     
     func checkIfLocationEnabled() -> Bool {
         if CLLocationManager.locationServicesEnabled() {
@@ -28,6 +32,15 @@ struct LocationManager {
         }
     }
     
+    func searchNearbyForUsers() {
+        delegate?.setControllerTitle("Searching nearby...")
+        if checkIfLocationEnabled() {
+            requestLocation()
+        }else{
+            delegate?.setControllerTitle("Enable location services...")
+        }
+    }
+    
     func requestPermission() {
         manager.requestWhenInUseAuthorization()
     }
@@ -39,5 +52,8 @@ struct LocationManager {
     func stopUpdatingLocation() {
         manager.stopUpdatingLocation()
     }
-    
+}
+
+extension LocationManagerDelegate {
+    func setControllerTitle(_ title: String) {}
 }

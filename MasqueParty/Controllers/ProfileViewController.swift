@@ -1,47 +1,57 @@
 //
-//  HomeViewController.swift
+//  ProfileViewController.swift
 //  MasqueParty
-//     var appID = "57d7908be51c4b742a00000c"
-//var sdk = VungleSDK.sharedSDK()
-// start vungle publisher library
-//sdk.startWithAppId(appID)
+//
 //  Created by Isaiah Jenkins on 8/4/16.
 //  Copyright © 2016 MasqueParty. All rights reserved.
-//For the In app purchase, it's going to be .99 for 100 pts., 2.50 for 500pts, 5.00 for 1000pts
-//For Guest user, if current user == nil then set current uid to masqueguest uid :) for each page that you need
+//
+
 import UIKit
 
 class ProfileViewController: UIViewController {
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var bio: UITextField!
-    @IBOutlet weak var profileLoadingSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var bio: UITextView!
+    @IBOutlet weak var saveBioButton: UIButton!
+    @IBOutlet weak var profileScrollView: UIScrollView!
     
     var firebaseManager = FirebaseManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureDelegates()
+        configureRefreshControl()
+        configureBioLayer()
+        firebaseManager.readUserData()
+        startRefreshing()
+    }
+    
+    func configureDelegates() {
         firebaseManager.delegate = self
     }
-   
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    
+    func configureRefreshControl() {
+        profileScrollView.refreshControl = UIRefreshControl()
+        profileScrollView.refreshControl?.addTarget(self, action: #selector(refreshProfile), for: .valueChanged)
+        profileScrollView.refreshControl?.tintColor = .lightGray
+    }
+    
+    @objc func refreshProfile() {
         firebaseManager.readUserData()
-        startLoadingSpinner()
     }
     
-    func startLoadingSpinner() {
-        showLoadingSpinner()
-        profileLoadingSpinner.startAnimating()
+    func configureBioLayer() {
+        bio.layer.borderWidth = 1
+        bio.layer.borderColor = UIColor.lightGray.cgColor
+        bio.layer.cornerRadius = 10
     }
     
-    func stopLoadingSpinner() {
-        profileLoadingSpinner.stopAnimating()
-        showLoadingSpinner(false)
+    func startRefreshing() {
+        profileScrollView.refreshControl?.beginRefreshing()
     }
     
-    func showLoadingSpinner(_ show: Bool = true){
-        profileLoadingSpinner.isHidden = !show
+    func endRefreshing() {
+        profileScrollView.refreshControl?.endRefreshing()
     }
     
     @IBAction func saveBio(_ sender: UIButton) {
@@ -62,24 +72,31 @@ class ProfileViewController: UIViewController {
 // MARK: - FirebaseDelegate
 
 extension ProfileViewController : FirebaseDelegate {
+    func promptMessage(_ message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
     func updateUserProfileUI(_ userData: [String : Any]?) {
         guard let userData = userData else {
             return
         }
-        print("profile updated")
         DispatchQueue.main.async {
-            self.stopLoadingSpinner()
             if let userProfilePicURL = NSURL(string: userData["profile_pic_small"] as! String) as URL?,
                let imageData = NSData(contentsOf: userProfilePicURL) {
                 self.profilePic.image =  UIImage(data:imageData as Data)
-               
+                
             }
             let fullName = userData["name"] as? String ?? ""
             let bioString = userData["bio"] as? String ?? ""
             self.name.text = fullName
+            self.navigationItem.title = fullName
             if bioString.count > 0 {
                 self.bio.text = bioString
             }
+            self.endRefreshing()
         }
     }
 }

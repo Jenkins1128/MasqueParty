@@ -1,5 +1,5 @@
 //
-//  NearbyCollectionViewController.swift
+//  NearbyUsersViewController.swift
 //  MasqueParty
 //
 //  Created by Isaiah Jenkins on 9/1/16.
@@ -11,31 +11,14 @@ import Firebase
 import CoreLocation
 
 class NearbyUsersViewController: UIViewController {
-
+    @IBOutlet weak var nearbyUsersCollectionView: UICollectionView!
+    
     var firebaseManager = FirebaseManager()
     var locationManager = LocationManager()
-   var nearbyUsers : [NearbyUser] = []
-//    var nearbyUsers : [NearbyUser] = [
-//        NearbyUser(uid: "", userProfilePicURL: "https://www.pinclipart.com/picdir/big/167-1677865_facebook-button-image-facebook-small-icon-png-clipart.png"),
-//        NearbyUser(uid: "", userProfilePicURL: "https://www.pinclipart.com/picdir/big/167-1677865_facebook-button-image-facebook-small-icon-png-clipart.png")
-//    ]
-   
-    @IBOutlet var nearbyLoading: UIActivityIndicatorView!
-    @IBOutlet weak var nearbyUsersCollectionView: UICollectionView!
+    var nearbyUsers : [NearbyUser] = []
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        locationManager.requestPermission()
-        setTitle("Searching nearby...")
-        startLoadingSpinner()
-        //check if location services is on
-        if locationManager.checkIfLocationEnabled() {
-            //get postalCity using CoreLocation
-            locationManager.requestLocation()
-        }else{
-            //else set nav title to Enable location services...
-            setTitle("Enable location services...")
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,28 +28,47 @@ class NearbyUsersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureDelegates()
+        configureRefreshControl()
+        registerCustomCollectionViewCell()
+        locationManager.requestPermission()
+        locationManager.searchNearbyForUsers()
+        startRefreshing()
+    }
+    
+    func registerCustomCollectionViewCell() {
+        nearbyUsersCollectionView.register(UINib(nibName: K.CellInfo.nearbyCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CellInfo.nearbyCellIdentifier)
+    }
+    
+    func configureDelegates() {
         firebaseManager.delegate = self
         locationManager.manager.delegate = self
-        nearbyUsersCollectionView.register(UINib(nibName: K.CellInfo.nearbyCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CellInfo.nearbyCellIdentifier)
-
+        locationManager.delegate = self
     }
     
-    func startLoadingSpinner() {
-        showLoadingSpinner()
-        nearbyLoading.startAnimating()
+    func configureRefreshControl () {
+        nearbyUsersCollectionView.refreshControl = UIRefreshControl()
+        nearbyUsersCollectionView.refreshControl?.addTarget(self, action:
+                                                                #selector(resfreshNearbyUsers),
+                                                            for: .valueChanged)
+        nearbyUsersCollectionView.refreshControl?.tintColor = .lightGray
+        
     }
     
-    func stopLoadingSpinner() {
-        nearbyLoading.stopAnimating()
-        showLoadingSpinner(false)
-    }
-    
-    func showLoadingSpinner(_ show: Bool = true){
-        nearbyLoading.isHidden = !show
+    @objc func resfreshNearbyUsers(refreshControl: UIRefreshControl) {
+        locationManager.searchNearbyForUsers()
     }
     
     func setTitle(_ title: String){
         navigationItem.title = title
+    }
+    
+    func startRefreshing() {
+        nearbyUsersCollectionView.refreshControl?.beginRefreshing()
+    }
+    
+    func endRefreshing() {
+        nearbyUsersCollectionView.refreshControl?.endRefreshing()
     }
 }
 
@@ -78,18 +80,16 @@ extension NearbyUsersViewController : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return nearbyUsers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellInfo.nearbyCellIdentifier, for: indexPath as IndexPath) as! NearbyCollectionViewCell
-        if let userProfilePicURL = NSURL(string: nearbyUsers[indexPath.row].userProfilePicURL) as URL?,
+        if let userProfilePicURL = NSURL(string: nearbyUsers[indexPath.row].picURL) as URL?,
            let imageData = NSData(contentsOf: userProfilePicURL) {
             cell.nearbyImage.image = UIImage(data:imageData as Data)
             cell.uid = nearbyUsers[indexPath.row].uid
         }
-        
         return cell
     }
 }
@@ -98,7 +98,6 @@ extension NearbyUsersViewController : UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension NearbyUsersViewController : UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "goToUserProfile", sender: indexPath)
     }
@@ -107,37 +106,9 @@ extension NearbyUsersViewController : UICollectionViewDelegate {
         if segue.identifier == "goToUserProfile" {
             let indexPath = sender as! IndexPath
             let destitinationVC = segue.destination as! UserViewController
-            destitinationVC.uid = nearbyUsers[indexPath.row].uid
+            destitinationVC.nearbyUser = nearbyUsers[indexPath.row]
         }
     }
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
 }
 
 // MARK: - FirebaseDelegate
@@ -147,22 +118,22 @@ extension NearbyUsersViewController : FirebaseDelegate {
         nearbyUsers = []
     }
     
-    func addNearbyUser(_ nearbyUserId: String, _ profilePicURL: String) {
-        let newUser = NearbyUser(uid: nearbyUserId, userProfilePicURL: profilePicURL)
+    func addNearbyUser(_ uid: String, _ picURL: String, _ name: String, _ bio: String) {
+        let newUser = NearbyUser(uid: uid, picURL: picURL, name: name, bio: bio)
         self.nearbyUsers.append(newUser)
-        print("newUser", newUser)
     }
     
-    func refreshCollectionView() {
+    func refreshCollectionView(_ currentLocation: String) {
         DispatchQueue.main.async {
             self.nearbyUsersCollectionView.reloadData()
             if self.nearbyUsers.count > 0 {
-                let indexPath = IndexPath(row: self.nearbyUsers.count - 1, section: 1)
-                self.nearbyUsersCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+                let indexPath = IndexPath(row: self.nearbyUsers.count - 1, section: 0)
+                self.nearbyUsersCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
             }
+            self.setControllerTitle(currentLocation)
+            self.endRefreshing()
         }
     }
-    
 }
 
 // MARK: - CLLocationManagerDelegate
@@ -172,7 +143,7 @@ extension NearbyUsersViewController : CLLocationManagerDelegate {
         if #available(iOS 14.0, *) {
             if manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways {
                 locationManager.requestLocation()
-                startLoadingSpinner()
+                setControllerTitle("Searching nearby...")
             }
         }
     }
@@ -181,26 +152,21 @@ extension NearbyUsersViewController : CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         guard let location = locations.first else {
             setTitle("No Location")
-            self.stopLoadingSpinner()
             return
         }
-        
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { placemarks, error in
             guard error == nil else {
                 print(error!.localizedDescription)
-                self.stopLoadingSpinner()
                 return
             }
-            
             if let firstPlacemark = placemarks?.first {
-                let currentlocation = firstPlacemark.subAdministrativeArea ?? "no sub area"
-                //update current user's postalCity in firestore
+                var currentlocation = firstPlacemark.subAdministrativeArea ?? "no sub area"
+                if let name = firstPlacemark.name {
+                    currentlocation = name
+                }
                 self.firebaseManager.setDataForCurrentUser("postalCity", currentlocation)
-                //get once, query where postalCity, not current uid, limit 20
                 self.firebaseManager.queryForUsersInLocation(currentlocation)
-                self.setTitle(currentlocation)
-                self.stopLoadingSpinner()
             }
         }
     }
@@ -210,4 +176,11 @@ extension NearbyUsersViewController : CLLocationManagerDelegate {
     }
 }
 
+// MARK: - LocationManagerDelegate
+
+extension NearbyUsersViewController : LocationManagerDelegate {
+    func setControllerTitle(_ title: String) {
+        setTitle(title)
+    }
+}
 

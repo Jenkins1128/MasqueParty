@@ -1,5 +1,5 @@
 //
-//  UIImage+Round.swift
+//  RoundedImageView.swift
 //  MasqueParty
 //
 //  Created by Isaiah Jenkins on 10/18/21.
@@ -9,12 +9,6 @@
 import UIKit
 
 class RoundedImageView: UIImageView {
-    override var bounds: CGRect {
-        didSet {
-            layoutIfNeeded()
-        }
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         let radius = self.frame.width/2.0

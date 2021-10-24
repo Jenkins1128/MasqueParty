@@ -1,5 +1,5 @@
 //
-//  PostViewController.swift
+//  UserViewController.swift
 //  MasqueParty
 //
 //  Created by Isaiah Jenkins on 10/8/16.
@@ -11,62 +11,32 @@ import UIKit
 class UserViewController: UIViewController {
     @IBOutlet var profilePic: UIImageView!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var bio: UILabel!
-    @IBOutlet weak var userLoadingSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var bio: UITextView!
     
-    var firebaseManager = FirebaseManager()
-    var uid: String?
+    var nearbyUser: NearbyUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firebaseManager.delegate = self
-        
+        configureBioLayer()
+        updateUI()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        guard let uid = uid else {
+    func configureBioLayer() {
+        bio.layer.borderWidth = 1
+        bio.layer.borderColor = UIColor.lightGray.cgColor
+        bio.layer.cornerRadius = 10
+    }
+    
+    func updateUI() {
+        guard let nearbyUser = nearbyUser else {
             return
         }
-        firebaseManager.readUserData(uid)
-        startLoadingSpinner()
-    }
-    
-    func startLoadingSpinner() {
-        showLoadingSpinner()
-        userLoadingSpinner.startAnimating()
-    }
-    
-    func stopLoadingSpinner() {
-        userLoadingSpinner.stopAnimating()
-        showLoadingSpinner(false)
-    }
-    
-    func showLoadingSpinner(_ show: Bool = true){
-        userLoadingSpinner.isHidden = !show
-    }
-    
-}
-
-// MARK: - FirebaseDelegate
-
-extension UserViewController : FirebaseDelegate {
-    func updateUserProfileUI(_ userData: [String : Any]?) {
-        guard let userData = userData else {
-            return
+        if let userProfilePicURL = NSURL(string: nearbyUser.picURL) as URL?,
+           let imageData = NSData(contentsOf: userProfilePicURL) {
+            self.profilePic.image =  UIImage(data:imageData as Data)
         }
-        print("profile updated")
-        DispatchQueue.main.async {
-            self.stopLoadingSpinner()
-            if let userProfilePicURL = NSURL(string: userData["profile_pic_small"] as! String) as URL?,
-               let imageData = NSData(contentsOf: userProfilePicURL) {
-                self.profilePic.image =  UIImage(data:imageData as Data)
-               
-            }
-            self.name.text = userData["name"] as? String ?? ""
-            self.bio.text = userData["bio"] as? String ?? ""
-        }
-        
+        self.name.text = nearbyUser.name
+        self.bio.text = nearbyUser.bio
     }
 }
 
