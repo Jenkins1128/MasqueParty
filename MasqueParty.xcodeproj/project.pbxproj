@@ -29,7 +29,6 @@
 		E9706305270CC3410068ABB5 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = E9706304270CC3410068ABB5 /* FacebookShare */; };
 		E97BA997271F63C300A04BB1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E97BA996271F63C300A04BB1 /* IQKeyboardManagerSwift */; };
 		E97BFA25271E28A90013E0FC /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97BFA24271E28A90013E0FC /* RoundedImageView.swift */; };
-		E98EF29E27206FB800899E98 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF29D27206FB800899E98 /* ChatViewController.swift */; };
 		E994EBC3270FBB5100FE71AA /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994EBC2270FBB5100FE71AA /* FirebaseManager.swift */; };
 		E994EBC5270FE7E700FE71AA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994EBC4270FE7E700FE71AA /* Constants.swift */; };
 		E9A0DA88271AAF9700B23FBC /* NearbyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A0DA87271AAF9700B23FBC /* NearbyUser.swift */; };
@@ -71,7 +70,6 @@
 		E96C960327149A4100E1186D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E97BFA24271E28A90013E0FC /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		E98CA1CD1DB54CCB002D3AA6 /* MasqueParty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MasqueParty.entitlements; sourceTree = "<group>"; };
-		E98EF29D27206FB800899E98 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		E994EBC2270FBB5100FE71AA /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		E994EBC4270FE7E700FE71AA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E9A0DA87271AAF9700B23FBC /* NearbyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyUser.swift; sourceTree = "<group>"; };
@@ -175,10 +173,9 @@
 		E994EBBE270F716A00FE71AA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E98EF29D27206FB800899E98 /* ChatViewController.swift */,
 				E9EABA211D4C7AA500B3FB1D /* LoginViewController.swift */,
-				E910ED0B1DA9445700673A94 /* UserViewController.swift */,
 				E90F718B1D7942210015E605 /* NearbyUsersViewController.swift */,
+				E910ED0B1DA9445700673A94 /* UserViewController.swift */,
 				E9E5F1261D53BB7100768848 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
@@ -417,7 +414,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E98EF29E27206FB800899E98 /* ChatViewController.swift in Sources */,
 				E9EABA221D4C7AA500B3FB1D /* LoginViewController.swift in Sources */,
 				E994EBC3270FBB5100FE71AA /* FirebaseManager.swift in Sources */,
 				E9EABA201D4C7AA500B3FB1D /* AppDelegate.swift in Sources */,

@@ -14,7 +14,6 @@ protocol LocationManagerDelegate {
 }
 
 struct LocationManager {
-    
     var manager = CLLocationManager()
     var delegate : LocationManagerDelegate?
     
@@ -33,15 +32,11 @@ struct LocationManager {
         }
     }
     
-    
     func searchNearbyForUsers() {
         delegate?.setControllerTitle("Searching nearby...")
-        //check if location services is on
         if checkIfLocationEnabled() {
-            //get postalCity using CoreLocation
             requestLocation()
         }else{
-            //else set nav title to Enable location services...
             delegate?.setControllerTitle("Enable location services...")
         }
     }
@@ -57,7 +52,6 @@ struct LocationManager {
     func stopUpdatingLocation() {
         manager.stopUpdatingLocation()
     }
-    
 }
 
 extension LocationManagerDelegate {

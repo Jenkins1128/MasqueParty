@@ -1,5 +1,5 @@
 //
-//  NearbyCollectionViewController.swift
+//  NearbyUsersViewController.swift
 //  MasqueParty
 //
 //  Created by Isaiah Jenkins on 9/1/16.
@@ -11,20 +11,14 @@ import Firebase
 import CoreLocation
 
 class NearbyUsersViewController: UIViewController {
-
+    @IBOutlet weak var nearbyUsersCollectionView: UICollectionView!
+    
     var firebaseManager = FirebaseManager()
     var locationManager = LocationManager()
-   var nearbyUsers : [NearbyUser] = []
-//    var nearbyUsers : [NearbyUser] = [
-//        NearbyUser(uid: "", userProfilePicURL: "https://www.pinclipart.com/picdir/big/167-1677865_facebook-button-image-facebook-small-icon-png-clipart.png"),
-//        NearbyUser(uid: "", userProfilePicURL: "https://www.pinclipart.com/picdir/big/167-1677865_facebook-button-image-facebook-small-icon-png-clipart.png")
-//    ]
-   
-    @IBOutlet weak var nearbyUsersCollectionView: UICollectionView!
+    var nearbyUsers : [NearbyUser] = []
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,8 +49,8 @@ class NearbyUsersViewController: UIViewController {
     func configureRefreshControl () {
         nearbyUsersCollectionView.refreshControl = UIRefreshControl()
         nearbyUsersCollectionView.refreshControl?.addTarget(self, action:
-                                          #selector(resfreshNearbyUsers),
-                                          for: .valueChanged)
+                                                                #selector(resfreshNearbyUsers),
+                                                            for: .valueChanged)
         nearbyUsersCollectionView.refreshControl?.tintColor = .lightGray
         
     }
@@ -96,7 +90,6 @@ extension NearbyUsersViewController : UICollectionViewDataSource {
             cell.nearbyImage.image = UIImage(data:imageData as Data)
             cell.uid = nearbyUsers[indexPath.row].uid
         }
-        
         return cell
     }
 }
@@ -128,23 +121,19 @@ extension NearbyUsersViewController : FirebaseDelegate {
     func addNearbyUser(_ uid: String, _ picURL: String, _ name: String, _ bio: String) {
         let newUser = NearbyUser(uid: uid, picURL: picURL, name: name, bio: bio)
         self.nearbyUsers.append(newUser)
-        print("newUser", newUser)
     }
     
     func refreshCollectionView(_ currentLocation: String) {
         DispatchQueue.main.async {
             self.nearbyUsersCollectionView.reloadData()
             if self.nearbyUsers.count > 0 {
-                let indexPath = IndexPath(row: self.nearbyUsers.count - 1, section: 1)
-                self.nearbyUsersCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+                let indexPath = IndexPath(row: self.nearbyUsers.count - 1, section: 0)
+                self.nearbyUsersCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
             }
             self.setControllerTitle(currentLocation)
             self.endRefreshing()
         }
     }
-    
-    
-    
 }
 
 // MARK: - CLLocationManagerDelegate
@@ -163,23 +152,20 @@ extension NearbyUsersViewController : CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         guard let location = locations.first else {
             setTitle("No Location")
-            //self.stopLoadingSpinner()
             return
         }
-        
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { placemarks, error in
             guard error == nil else {
                 print(error!.localizedDescription)
-                //self.stopLoadingSpinner()
                 return
             }
-            
             if let firstPlacemark = placemarks?.first {
-                let currentlocation = firstPlacemark.subAdministrativeArea ?? "no sub area"
-                //update current user's postalCity in firestore
+                var currentlocation = firstPlacemark.subAdministrativeArea ?? "no sub area"
+                if let name = firstPlacemark.name {
+                    currentlocation = name
+                }
                 self.firebaseManager.setDataForCurrentUser("postalCity", currentlocation)
-                //get once, query where postalCity, not current uid, limit 20
                 self.firebaseManager.queryForUsersInLocation(currentlocation)
             }
         }
@@ -189,7 +175,6 @@ extension NearbyUsersViewController : CLLocationManagerDelegate {
         print(error.localizedDescription)
     }
 }
-
 
 // MARK: - LocationManagerDelegate
 

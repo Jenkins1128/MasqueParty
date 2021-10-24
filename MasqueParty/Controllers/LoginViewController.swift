@@ -1,15 +1,10 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  MasqueParty
 //
 //  Created by Isaiah Jenkins on 7/29/16.
 //  Copyright © 2016 MasqueParty. All rights reserved.
 //
-/*
- uides - user for bio clicked
- uids - current user
- */
-
 
 import UIKit
 import Firebase
@@ -64,7 +59,7 @@ class LoginViewController: UIViewController {
     
     @available(iOS 13.0, *)
     func goTo(_ storyboardId: String){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: K.mainStoryboard, bundle: nil)
         let controller = storyboard.instantiateViewController(identifier: storyboardId)
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(controller)
     }
@@ -88,19 +83,15 @@ extension LoginViewController : LoginButtonDelegate {
             print(error.localizedDescription)
             return
         }
-        
         guard let result = result else {
             return
         }
-        
         if result.isCancelled {
             stopLoadingSpinner()
             return
         }
-
         let credential = FacebookAuthProvider
             .credential(withAccessToken: AccessToken.current!.tokenString)
-
         if #available(iOS 13.0, *) {
             firebaseManager?.signIn(with: credential)
         }
@@ -112,11 +103,11 @@ extension LoginViewController : LoginButtonDelegate {
 
 extension LoginViewController : FirebaseDelegate {
     func showMessagePrompt(_ message: String) {
-       let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-       let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-       alert.addAction(okAction)
-       present(alert, animated: false, completion: nil)
-     }
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: false, completion: nil)
+    }
     
     func signInError(_ error: Error) {
         stopLoadingSpinner()

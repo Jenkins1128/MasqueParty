@@ -5,14 +5,14 @@
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
+		<true/>
 		<key>UISceneConfigurations</key>
 		<dict>
 			<key>UIWindowSceneSessionRoleApplication</key>
 			<array>
 				<dict>
 					<key>UISceneClassName</key>
-					<string></string>
+					<string>UIWindowScene</string>
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneConfigurationName</key>
@@ -97,6 +97,8 @@
 	<string>MasqueParty needs your location so you can be known in the collection view list of people nearby.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>MasqueParty wants to access your photos to allow you to use them in your Wazzup posts.</string>
+	<key>UIApplicationSupportsMultipleScenes</key>
+	<false/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -113,9 +115,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-    <key>UIUserInterfaceStyle</key>
-    <string>Light</string>
 </dict>
 </plist>

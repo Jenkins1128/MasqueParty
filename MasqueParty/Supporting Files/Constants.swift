@@ -10,22 +10,27 @@ import Foundation
 import FirebaseAuth
 
 struct K {
-    static let appName = ""
+    static let mainStoryboard = "Main"
+    static let sceneConfigurationName = "Default Configuration"
     
+    struct Controllers {
+        static let mainTabBar = "MainTabBarController"
+        static let loginView = "LoginViewController"
+    }
+   
     struct CellInfo {
             static let nearbyCellIdentifier = "NearbyCollectionViewCell"
             static let nearbyCellNibName = "NearbyCollectionViewCell"
     }
-
-//    static let registerSegue = "RegisterToChat"
-//    static let loginSegue = "LoginToChat"
     
-//    struct BrandColors {
-//        static let purple = "BrandPurple"
-//        static let lightPurple = "BrandLightPurple"
-//        static let blue = "BrandBlue"
-//        static let lighBlue = "BrandLightBlue"
-//    }
+    struct UserDefaults {
+        static let uid = "uid"
+    }
+    
+    struct Storage {
+        static let storageRef = "gs://masqueparty-173fe.appspot.com"
+        
+    }
     
     struct FStore {
         static let usersCollection = "users"
@@ -33,8 +38,5 @@ struct K {
         static let profilePic = "profile_pic_small"
         static let currentUser = Auth.auth().currentUser
         static let currentUserId = Auth.auth().currentUser?.uid ?? ""
-//        static let senderField = "sender"
-//        static let bodyField = "body"
-//        static let dateField = "date"
     }
 }
