@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var saveBioButton: UIButton!
     @IBOutlet weak var profileScrollView: UIScrollView!
     
-    var firebaseManager = FirebaseManager()
+    private var firebaseManager = FirebaseManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()

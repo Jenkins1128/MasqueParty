@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AE72C48B9D6B89F768EA1FB1 /* Pods_MasqueParty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67C8E6CEA6D7C058B56C0F4F /* Pods_MasqueParty.framework */; };
+		110DB752764023D979DA0DE0 /* Pods_MasqueParty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F7AD58E97817AB6361681C /* Pods_MasqueParty.framework */; };
+		57347FD39B136A3A5B669714 /* Pods_MasquePartyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F1196E7F9F68E61505F0775 /* Pods_MasquePartyTests.framework */; };
 		E90F718C1D7942210015E605 /* NearbyUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90F718B1D7942210015E605 /* NearbyUsersViewController.swift */; };
 		E90F718E1D7942CE0015E605 /* NearbyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90F718D1D7942CE0015E605 /* NearbyCollectionViewCell.swift */; };
 		E910ED0C1DA9445700673A94 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E910ED0B1DA9445700673A94 /* UserViewController.swift */; };
@@ -23,10 +24,13 @@
 		E9545C8B2716A39A0002CBF3 /* NearbyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9545C8A2716A39A0002CBF3 /* NearbyCollectionViewCell.xib */; };
 		E9545C8D2717734C0002CBF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9545C8C2717734B0002CBF3 /* SceneDelegate.swift */; };
 		E9545C8F271947080002CBF3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9545C8E271947080002CBF3 /* LocationManager.swift */; };
+		E96A090B2728705800CBE62D /* MasquePartyFirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A090A2728705800CBE62D /* MasquePartyFirebaseTests.swift */; };
 		E96C960427149A4100E1186D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E96C960327149A4100E1186D /* GoogleService-Info.plist */; };
 		E9706301270CC3410068ABB5 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = E9706300270CC3410068ABB5 /* FacebookCore */; };
 		E9706303270CC3410068ABB5 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = E9706302270CC3410068ABB5 /* FacebookLogin */; };
 		E9706305270CC3410068ABB5 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = E9706304270CC3410068ABB5 /* FacebookShare */; };
+		E976E718272899E200CA5220 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E976E717272899E200CA5220 /* NetworkMonitor.swift */; };
+		E976E720272933DE00CA5220 /* MasquePartyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E976E71F272933DE00CA5220 /* MasquePartyUITests.swift */; };
 		E97BA997271F63C300A04BB1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E97BA996271F63C300A04BB1 /* IQKeyboardManagerSwift */; };
 		E97BFA25271E28A90013E0FC /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97BFA24271E28A90013E0FC /* RoundedImageView.swift */; };
 		E994EBC3270FBB5100FE71AA /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994EBC2270FBB5100FE71AA /* FirebaseManager.swift */; };
@@ -48,9 +52,30 @@
 		E9EABA2D1D4C7AA500B3FB1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9EABA2B1D4C7AA500B3FB1D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E96A090C2728705800CBE62D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9EABA141D4C7AA500B3FB1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9EABA1B1D4C7AA500B3FB1D;
+			remoteInfo = MasqueParty;
+		};
+		E976E723272933DE00CA5220 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9EABA141D4C7AA500B3FB1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9EABA1B1D4C7AA500B3FB1D;
+			remoteInfo = MasqueParty;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		3490EBD23DFB436EA38EB6EE /* Pods-MasqueParty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasqueParty.release.xcconfig"; path = "Target Support Files/Pods-MasqueParty/Pods-MasqueParty.release.xcconfig"; sourceTree = "<group>"; };
-		67C8E6CEA6D7C058B56C0F4F /* Pods_MasqueParty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasqueParty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F1196E7F9F68E61505F0775 /* Pods_MasquePartyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasquePartyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D00E85AC441D7C900508FE7 /* Pods-MasqueParty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasqueParty.release.xcconfig"; path = "Target Support Files/Pods-MasqueParty/Pods-MasqueParty.release.xcconfig"; sourceTree = "<group>"; };
+		377A567A9DD044F157A81B5F /* Pods-MasquePartyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasquePartyTests.release.xcconfig"; path = "Target Support Files/Pods-MasquePartyTests/Pods-MasquePartyTests.release.xcconfig"; sourceTree = "<group>"; };
+		37F7AD58E97817AB6361681C /* Pods_MasqueParty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasqueParty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FC4D6F1567E244144B783CA /* Pods-MasqueParty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasqueParty.debug.xcconfig"; path = "Target Support Files/Pods-MasqueParty/Pods-MasqueParty.debug.xcconfig"; sourceTree = "<group>"; };
+		DAABB6CA58910925EF5086FF /* Pods-MasquePartyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasquePartyTests.debug.xcconfig"; path = "Target Support Files/Pods-MasquePartyTests/Pods-MasquePartyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E90F718B1D7942210015E605 /* NearbyUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyUsersViewController.swift; sourceTree = "<group>"; };
 		E90F718D1D7942CE0015E605 /* NearbyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyCollectionViewCell.swift; sourceTree = "<group>"; };
 		E910ED0B1DA9445700673A94 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
@@ -67,7 +92,12 @@
 		E9545C8A2716A39A0002CBF3 /* NearbyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearbyCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9545C8C2717734B0002CBF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E9545C8E271947080002CBF3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		E96A09082728705800CBE62D /* MasquePartyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MasquePartyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E96A090A2728705800CBE62D /* MasquePartyFirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasquePartyFirebaseTests.swift; sourceTree = "<group>"; };
 		E96C960327149A4100E1186D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E976E717272899E200CA5220 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		E976E71D272933DE00CA5220 /* MasquePartyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MasquePartyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E976E71F272933DE00CA5220 /* MasquePartyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasquePartyUITests.swift; sourceTree = "<group>"; };
 		E97BFA24271E28A90013E0FC /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		E98CA1CD1DB54CCB002D3AA6 /* MasqueParty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MasqueParty.entitlements; sourceTree = "<group>"; };
 		E994EBC2270FBB5100FE71AA /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -90,10 +120,24 @@
 		E9EABA291D4C7AA500B3FB1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9EABA2C1D4C7AA500B3FB1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9EABA2E1D4C7AA500B3FB1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED65E18396A5EB3C05956B9A /* Pods-MasqueParty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasqueParty.debug.xcconfig"; path = "Target Support Files/Pods-MasqueParty/Pods-MasqueParty.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E96A09052728705800CBE62D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57347FD39B136A3A5B669714 /* Pods_MasquePartyTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E976E71A272933DE00CA5220 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E9EABA191D4C7AA500B3FB1D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -119,7 +163,7 @@
 				E93E3F171D7899BD00A88132 /* AudioToolbox.framework in Frameworks */,
 				E9706305270CC3410068ABB5 /* FacebookShare in Frameworks */,
 				E93E3F151D7899B300A88132 /* Accelerate.framework in Frameworks */,
-				AE72C48B9D6B89F768EA1FB1 /* Pods_MasqueParty.framework in Frameworks */,
+				110DB752764023D979DA0DE0 /* Pods_MasqueParty.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,8 +173,10 @@
 		50DBFB2A33E8B13432F32698 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				ED65E18396A5EB3C05956B9A /* Pods-MasqueParty.debug.xcconfig */,
-				3490EBD23DFB436EA38EB6EE /* Pods-MasqueParty.release.xcconfig */,
+				4FC4D6F1567E244144B783CA /* Pods-MasqueParty.debug.xcconfig */,
+				2D00E85AC441D7C900508FE7 /* Pods-MasqueParty.release.xcconfig */,
+				DAABB6CA58910925EF5086FF /* Pods-MasquePartyTests.debug.xcconfig */,
+				377A567A9DD044F157A81B5F /* Pods-MasquePartyTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -157,15 +203,33 @@
 				E9B6D5D31D87D25E00FF1A8F /* UIKit.framework */,
 				E911ED981D905E4000BA97F7 /* CoreTelephony.framework */,
 				E9E9A4A11D66BA1A001A7586 /* CoreLocation.framework */,
-				67C8E6CEA6D7C058B56C0F4F /* Pods_MasqueParty.framework */,
+				37F7AD58E97817AB6361681C /* Pods_MasqueParty.framework */,
+				0F1196E7F9F68E61505F0775 /* Pods_MasquePartyTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E96A09092728705800CBE62D /* MasquePartyTests */ = {
+			isa = PBXGroup;
+			children = (
+				E96A090A2728705800CBE62D /* MasquePartyFirebaseTests.swift */,
+			);
+			path = MasquePartyTests;
+			sourceTree = "<group>";
+		};
+		E976E71E272933DE00CA5220 /* MasquePartyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E976E71F272933DE00CA5220 /* MasquePartyUITests.swift */,
+			);
+			path = MasquePartyUITests;
 			sourceTree = "<group>";
 		};
 		E97BFA23271E27860013E0FC /* Other Classes */ = {
 			isa = PBXGroup;
 			children = (
 				E97BFA24271E28A90013E0FC /* RoundedImageView.swift */,
+				E976E717272899E200CA5220 /* NetworkMonitor.swift */,
 			);
 			path = "Other Classes";
 			sourceTree = "<group>";
@@ -216,6 +280,8 @@
 			isa = PBXGroup;
 			children = (
 				E9EABA1E1D4C7AA500B3FB1D /* MasqueParty */,
+				E96A09092728705800CBE62D /* MasquePartyTests */,
+				E976E71E272933DE00CA5220 /* MasquePartyUITests */,
 				E9EABA1D1D4C7AA500B3FB1D /* Products */,
 				BC2309FD00663DB29D25791C /* Frameworks */,
 				50DBFB2A33E8B13432F32698 /* Pods */,
@@ -226,6 +292,8 @@
 			isa = PBXGroup;
 			children = (
 				E9EABA1C1D4C7AA500B3FB1D /* MasqueParty.app */,
+				E96A09082728705800CBE62D /* MasquePartyTests.xctest */,
+				E976E71D272933DE00CA5220 /* MasquePartyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,15 +317,52 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E96A09072728705800CBE62D /* MasquePartyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E96A090E2728705800CBE62D /* Build configuration list for PBXNativeTarget "MasquePartyTests" */;
+			buildPhases = (
+				96B09237BF310BDBB1839F1B /* [CP] Check Pods Manifest.lock */,
+				E96A09042728705800CBE62D /* Sources */,
+				E96A09052728705800CBE62D /* Frameworks */,
+				E96A09062728705800CBE62D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E96A090D2728705800CBE62D /* PBXTargetDependency */,
+			);
+			name = MasquePartyTests;
+			productName = MasquePartyTests;
+			productReference = E96A09082728705800CBE62D /* MasquePartyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E976E71C272933DE00CA5220 /* MasquePartyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E976E725272933DE00CA5220 /* Build configuration list for PBXNativeTarget "MasquePartyUITests" */;
+			buildPhases = (
+				E976E719272933DE00CA5220 /* Sources */,
+				E976E71A272933DE00CA5220 /* Frameworks */,
+				E976E71B272933DE00CA5220 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E976E724272933DE00CA5220 /* PBXTargetDependency */,
+			);
+			name = MasquePartyUITests;
+			productName = MasquePartyUITests;
+			productReference = E976E71D272933DE00CA5220 /* MasquePartyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E9EABA1B1D4C7AA500B3FB1D /* MasqueParty */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9EABA311D4C7AA500B3FB1D /* Build configuration list for PBXNativeTarget "MasqueParty" */;
 			buildPhases = (
-				50D59ACF31500E6BB1C68F57 /* [CP] Check Pods Manifest.lock */,
+				74103D46AFF6331C042DAC6C /* [CP] Check Pods Manifest.lock */,
 				E9EABA181D4C7AA500B3FB1D /* Sources */,
 				E9EABA191D4C7AA500B3FB1D /* Frameworks */,
 				E9EABA1A1D4C7AA500B3FB1D /* Resources */,
-				A44BA6D31E8ABF7F7974154D /* [CP] Embed Pods Frameworks */,
+				D1CABC34A5390E580E1F2934 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -280,10 +385,18 @@
 		E9EABA141D4C7AA500B3FB1D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = MasqueParty;
 				TargetAttributes = {
+					E96A09072728705800CBE62D = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = E9EABA1B1D4C7AA500B3FB1D;
+					};
+					E976E71C272933DE00CA5220 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = E9EABA1B1D4C7AA500B3FB1D;
+					};
 					E9EABA1B1D4C7AA500B3FB1D = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 2ZW8D4GCGX;
@@ -317,11 +430,27 @@
 			projectRoot = "";
 			targets = (
 				E9EABA1B1D4C7AA500B3FB1D /* MasqueParty */,
+				E96A09072728705800CBE62D /* MasquePartyTests */,
+				E976E71C272933DE00CA5220 /* MasquePartyUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E96A09062728705800CBE62D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E976E71B272933DE00CA5220 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E9EABA1A1D4C7AA500B3FB1D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -337,7 +466,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		50D59ACF31500E6BB1C68F57 /* [CP] Check Pods Manifest.lock */ = {
+		74103D46AFF6331C042DAC6C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -359,7 +488,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A44BA6D31E8ABF7F7974154D /* [CP] Embed Pods Frameworks */ = {
+		96B09237BF310BDBB1839F1B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MasquePartyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1CABC34A5390E580E1F2934 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -376,7 +527,6 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/abseil/absl.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -395,7 +545,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/absl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -410,6 +559,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E96A09042728705800CBE62D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E96A090B2728705800CBE62D /* MasquePartyFirebaseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E976E719272933DE00CA5220 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E976E720272933DE00CA5220 /* MasquePartyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E9EABA181D4C7AA500B3FB1D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -423,6 +588,7 @@
 				E910ED0C1DA9445700673A94 /* UserViewController.swift in Sources */,
 				E9E5F1271D53BB7100768848 /* ProfileViewController.swift in Sources */,
 				E90F718C1D7942210015E605 /* NearbyUsersViewController.swift in Sources */,
+				E976E718272899E200CA5220 /* NetworkMonitor.swift in Sources */,
 				E90F718E1D7942CE0015E605 /* NearbyCollectionViewCell.swift in Sources */,
 				E9545C8D2717734C0002CBF3 /* SceneDelegate.swift in Sources */,
 				E9545C8F271947080002CBF3 /* LocationManager.swift in Sources */,
@@ -430,6 +596,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E96A090D2728705800CBE62D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E9EABA1B1D4C7AA500B3FB1D /* MasqueParty */;
+			targetProxy = E96A090C2728705800CBE62D /* PBXContainerItemProxy */;
+		};
+		E976E724272933DE00CA5220 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E9EABA1B1D4C7AA500B3FB1D /* MasqueParty */;
+			targetProxy = E976E723272933DE00CA5220 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E9EABA231D4C7AA500B3FB1D /* Main.storyboard */ = {
@@ -451,6 +630,134 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E96A090F2728705800CBE62D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAABB6CA58910925EF5086FF /* Pods-MasquePartyTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZW8D4GCGX;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Isaiah-Jenkins.MasquePartyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MasqueParty.app/MasqueParty";
+			};
+			name = Debug;
+		};
+		E96A09102728705800CBE62D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 377A567A9DD044F157A81B5F /* Pods-MasquePartyTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZW8D4GCGX;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Isaiah-Jenkins.MasquePartyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MasqueParty.app/MasqueParty";
+			};
+			name = Release;
+		};
+		E976E726272933DE00CA5220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZW8D4GCGX;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Isaiah-Jenkins.MasquePartyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MasqueParty;
+			};
+			name = Debug;
+		};
+		E976E727272933DE00CA5220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZW8D4GCGX;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Isaiah-Jenkins.MasquePartyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MasqueParty;
+			};
+			name = Release;
+		};
 		E9EABA2F1D4C7AA500B3FB1D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -564,7 +871,7 @@
 		};
 		E9EABA321D4C7AA500B3FB1D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED65E18396A5EB3C05956B9A /* Pods-MasqueParty.debug.xcconfig */;
+			baseConfigurationReference = 4FC4D6F1567E244144B783CA /* Pods-MasqueParty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -574,17 +881,53 @@
 				COPY_HEADERS_RUN_UNIFDEF = NO;
 				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 2ZW8D4GCGX;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/isaiahjenkins/Documents/FacebookSDK,
 				);
+				HEADER_SEARCH_PATHS = (
+					"${inherited}",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BoringSSL-GRPC-framework/openssl_grpc.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth-framework/FirebaseAuth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore-framework/FirebaseCore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics-framework/FirebaseCoreDiagnostics.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore-framework/FirebaseFirestore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseStorage-framework/FirebaseStorage.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher-framework/GTMSessionFetcher.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport-framework/GoogleDataTransport.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities-framework/GoogleUtilities.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC-framework/FBLPromises.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyJSON/SwiftyJSON.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/abseil-framework/absl.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++-framework/grpcpp.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-Core-framework/grpc.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library-framework/leveldb.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb-framework/nanopb.framework/Headers\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/BoringSSL-GRPC\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCoreDiagnostics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseFirestore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseStorage\"",
+					"\"${PODS_ROOT}/Headers/Public/GTMSessionFetcher\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleDataTransport\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/PromisesObjC\"",
+					"\"${PODS_ROOT}/Headers/Public/abseil\"",
+					"\"${PODS_ROOT}/Headers/Public/gRPC-C++\"",
+					"\"${PODS_ROOT}/Headers/Public/gRPC-Core\"",
+					"\"${PODS_ROOT}/Headers/Public/leveldb-library\"",
+					"\"${PODS_ROOT}/Headers/Public/nanopb\"",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_TARGET_SRCROOT}/Sources/FBLPromises/include\"",
+				);
 				INFOPLIST_FILE = MasqueParty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Isaiah-Jenkins.MasqueParty.2ZW8D4GCGX";
@@ -600,7 +943,7 @@
 		};
 		E9EABA331D4C7AA500B3FB1D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3490EBD23DFB436EA38EB6EE /* Pods-MasqueParty.release.xcconfig */;
+			baseConfigurationReference = 2D00E85AC441D7C900508FE7 /* Pods-MasqueParty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -610,17 +953,53 @@
 				COPY_HEADERS_RUN_UNIFDEF = NO;
 				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 2ZW8D4GCGX;
+				ENABLE_TESTABILITY = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/isaiahjenkins/Documents/FacebookSDK,
 				);
+				HEADER_SEARCH_PATHS = (
+					"${inherited}",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BoringSSL-GRPC-framework/openssl_grpc.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth-framework/FirebaseAuth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore-framework/FirebaseCore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics-framework/FirebaseCoreDiagnostics.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore-framework/FirebaseFirestore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseStorage-framework/FirebaseStorage.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher-framework/GTMSessionFetcher.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport-framework/GoogleDataTransport.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities-framework/GoogleUtilities.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC-framework/FBLPromises.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyJSON/SwiftyJSON.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/abseil-framework/absl.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++-framework/grpcpp.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-Core-framework/grpc.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library-framework/leveldb.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb-framework/nanopb.framework/Headers\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/BoringSSL-GRPC\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCoreDiagnostics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseFirestore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseStorage\"",
+					"\"${PODS_ROOT}/Headers/Public/GTMSessionFetcher\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleDataTransport\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/PromisesObjC\"",
+					"\"${PODS_ROOT}/Headers/Public/abseil\"",
+					"\"${PODS_ROOT}/Headers/Public/gRPC-C++\"",
+					"\"${PODS_ROOT}/Headers/Public/gRPC-Core\"",
+					"\"${PODS_ROOT}/Headers/Public/leveldb-library\"",
+					"\"${PODS_ROOT}/Headers/Public/nanopb\"",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_TARGET_SRCROOT}/Sources/FBLPromises/include\"",
+				);
 				INFOPLIST_FILE = MasqueParty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Isaiah-Jenkins.MasqueParty.2ZW8D4GCGX";
@@ -638,6 +1017,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E96A090E2728705800CBE62D /* Build configuration list for PBXNativeTarget "MasquePartyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E96A090F2728705800CBE62D /* Debug */,
+				E96A09102728705800CBE62D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E976E725272933DE00CA5220 /* Build configuration list for PBXNativeTarget "MasquePartyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E976E726272933DE00CA5220 /* Debug */,
+				E976E727272933DE00CA5220 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E9EABA171D4C7AA500B3FB1D /* Build configuration list for PBXProject "MasqueParty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
