@@ -25,8 +25,8 @@ protocol FirebaseDelegate {
 
 struct FirebaseManager {
     var delegate : FirebaseDelegate?
-    var db = Firestore.firestore()
-    var currentUser : NearbyUser?
+    private var db = Firestore.firestore()
+    private var currentUser : NearbyUser?
     
     @available(iOS 13.0, *)
     func signIn(with credential: AuthCredential) {

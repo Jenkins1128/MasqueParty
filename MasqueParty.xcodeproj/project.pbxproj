@@ -30,6 +30,7 @@
 		E9706303270CC3410068ABB5 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = E9706302270CC3410068ABB5 /* FacebookLogin */; };
 		E9706305270CC3410068ABB5 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = E9706304270CC3410068ABB5 /* FacebookShare */; };
 		E976E718272899E200CA5220 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E976E717272899E200CA5220 /* NetworkMonitor.swift */; };
+		E976E720272933DE00CA5220 /* MasquePartyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E976E71F272933DE00CA5220 /* MasquePartyUITests.swift */; };
 		E97BA997271F63C300A04BB1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E97BA996271F63C300A04BB1 /* IQKeyboardManagerSwift */; };
 		E97BFA25271E28A90013E0FC /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97BFA24271E28A90013E0FC /* RoundedImageView.swift */; };
 		E994EBC3270FBB5100FE71AA /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994EBC2270FBB5100FE71AA /* FirebaseManager.swift */; };
@@ -53,6 +54,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		E96A090C2728705800CBE62D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9EABA141D4C7AA500B3FB1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9EABA1B1D4C7AA500B3FB1D;
+			remoteInfo = MasqueParty;
+		};
+		E976E723272933DE00CA5220 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E9EABA141D4C7AA500B3FB1D /* Project object */;
 			proxyType = 1;
@@ -88,6 +96,8 @@
 		E96A090A2728705800CBE62D /* MasquePartyFirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasquePartyFirebaseTests.swift; sourceTree = "<group>"; };
 		E96C960327149A4100E1186D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E976E717272899E200CA5220 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		E976E71D272933DE00CA5220 /* MasquePartyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MasquePartyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E976E71F272933DE00CA5220 /* MasquePartyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasquePartyUITests.swift; sourceTree = "<group>"; };
 		E97BFA24271E28A90013E0FC /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		E98CA1CD1DB54CCB002D3AA6 /* MasqueParty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MasqueParty.entitlements; sourceTree = "<group>"; };
 		E994EBC2270FBB5100FE71AA /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -118,6 +128,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				57347FD39B136A3A5B669714 /* Pods_MasquePartyTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E976E71A272933DE00CA5220 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +217,14 @@
 			path = MasquePartyTests;
 			sourceTree = "<group>";
 		};
+		E976E71E272933DE00CA5220 /* MasquePartyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E976E71F272933DE00CA5220 /* MasquePartyUITests.swift */,
+			);
+			path = MasquePartyUITests;
+			sourceTree = "<group>";
+		};
 		E97BFA23271E27860013E0FC /* Other Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +281,7 @@
 			children = (
 				E9EABA1E1D4C7AA500B3FB1D /* MasqueParty */,
 				E96A09092728705800CBE62D /* MasquePartyTests */,
+				E976E71E272933DE00CA5220 /* MasquePartyUITests */,
 				E9EABA1D1D4C7AA500B3FB1D /* Products */,
 				BC2309FD00663DB29D25791C /* Frameworks */,
 				50DBFB2A33E8B13432F32698 /* Pods */,
@@ -267,6 +293,7 @@
 			children = (
 				E9EABA1C1D4C7AA500B3FB1D /* MasqueParty.app */,
 				E96A09082728705800CBE62D /* MasquePartyTests.xctest */,
+				E976E71D272933DE00CA5220 /* MasquePartyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -309,6 +336,24 @@
 			productReference = E96A09082728705800CBE62D /* MasquePartyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E976E71C272933DE00CA5220 /* MasquePartyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E976E725272933DE00CA5220 /* Build configuration list for PBXNativeTarget "MasquePartyUITests" */;
+			buildPhases = (
+				E976E719272933DE00CA5220 /* Sources */,
+				E976E71A272933DE00CA5220 /* Frameworks */,
+				E976E71B272933DE00CA5220 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E976E724272933DE00CA5220 /* PBXTargetDependency */,
+			);
+			name = MasquePartyUITests;
+			productName = MasquePartyUITests;
+			productReference = E976E71D272933DE00CA5220 /* MasquePartyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E9EABA1B1D4C7AA500B3FB1D /* MasqueParty */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9EABA311D4C7AA500B3FB1D /* Build configuration list for PBXNativeTarget "MasqueParty" */;
@@ -348,6 +393,10 @@
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = E9EABA1B1D4C7AA500B3FB1D;
 					};
+					E976E71C272933DE00CA5220 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = E9EABA1B1D4C7AA500B3FB1D;
+					};
 					E9EABA1B1D4C7AA500B3FB1D = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 2ZW8D4GCGX;
@@ -382,12 +431,20 @@
 			targets = (
 				E9EABA1B1D4C7AA500B3FB1D /* MasqueParty */,
 				E96A09072728705800CBE62D /* MasquePartyTests */,
+				E976E71C272933DE00CA5220 /* MasquePartyUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E96A09062728705800CBE62D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E976E71B272933DE00CA5220 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -510,6 +567,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E976E719272933DE00CA5220 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E976E720272933DE00CA5220 /* MasquePartyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E9EABA181D4C7AA500B3FB1D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -537,6 +602,11 @@
 			isa = PBXTargetDependency;
 			target = E9EABA1B1D4C7AA500B3FB1D /* MasqueParty */;
 			targetProxy = E96A090C2728705800CBE62D /* PBXContainerItemProxy */;
+		};
+		E976E724272933DE00CA5220 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E9EABA1B1D4C7AA500B3FB1D /* MasqueParty */;
+			targetProxy = E976E723272933DE00CA5220 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -623,6 +693,68 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MasqueParty.app/MasqueParty";
+			};
+			name = Release;
+		};
+		E976E726272933DE00CA5220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZW8D4GCGX;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Isaiah-Jenkins.MasquePartyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MasqueParty;
+			};
+			name = Debug;
+		};
+		E976E727272933DE00CA5220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZW8D4GCGX;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Isaiah-Jenkins.MasquePartyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MasqueParty;
 			};
 			name = Release;
 		};
@@ -890,6 +1022,15 @@
 			buildConfigurations = (
 				E96A090F2728705800CBE62D /* Debug */,
 				E96A09102728705800CBE62D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E976E725272933DE00CA5220 /* Build configuration list for PBXNativeTarget "MasquePartyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E976E726272933DE00CA5220 /* Debug */,
+				E976E727272933DE00CA5220 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

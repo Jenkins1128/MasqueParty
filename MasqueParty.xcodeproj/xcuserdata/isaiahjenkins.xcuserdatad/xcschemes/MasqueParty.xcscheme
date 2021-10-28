@@ -26,7 +26,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -44,6 +45,16 @@
                BlueprintIdentifier = "E96A09072728705800CBE62D"
                BuildableName = "MasquePartyTests.xctest"
                BlueprintName = "MasquePartyTests"
+               ReferencedContainer = "container:MasqueParty.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E976E71C272933DE00CA5220"
+               BuildableName = "MasquePartyUITests.xctest"
+               BlueprintName = "MasquePartyUITests"
                ReferencedContainer = "container:MasqueParty.xcodeproj">
             </BuildableReference>
          </TestableReference>

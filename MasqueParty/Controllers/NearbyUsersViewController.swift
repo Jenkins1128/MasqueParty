@@ -13,9 +13,9 @@ import CoreLocation
 class NearbyUsersViewController: UIViewController {
     @IBOutlet weak var nearbyUsersCollectionView: UICollectionView!
     
-    var firebaseManager = FirebaseManager()
-    var locationManager = LocationManager()
-    var nearbyUsers : [NearbyUser] = []
+    private var firebaseManager = FirebaseManager()
+    private var locationManager = LocationManager()
+    private var nearbyUsers : [NearbyUser] = []
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -30,14 +30,15 @@ class NearbyUsersViewController: UIViewController {
         super.viewDidLoad()
         configureDelegates()
         configureRefreshControl()
-        registerCustomCollectionViewCell()
+        configureCollectionView()
         locationManager.requestPermission()
         locationManager.searchNearbyForUsers()
         startRefreshing()
     }
     
-    func registerCustomCollectionViewCell() {
+    func configureCollectionView() {
         nearbyUsersCollectionView.register(UINib(nibName: K.CellInfo.nearbyCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CellInfo.nearbyCellIdentifier)
+        nearbyUsersCollectionView.accessibilityIdentifier = "nearbyUsersCollectionView"
     }
     
     func configureDelegates() {
@@ -52,7 +53,6 @@ class NearbyUsersViewController: UIViewController {
                                                                 #selector(resfreshNearbyUsers),
                                                             for: .valueChanged)
         nearbyUsersCollectionView.refreshControl?.tintColor = .lightGray
-        
     }
     
     @objc func resfreshNearbyUsers(refreshControl: UIRefreshControl) {

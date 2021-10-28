@@ -15,8 +15,8 @@ import FBSDKLoginKit
 class LoginViewController: UIViewController {
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     
-    var loginButton = FBLoginButton()
-    var firebaseManager : FirebaseManager?
+    private var loginButton = FBLoginButton()
+    private var firebaseManager : FirebaseManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()

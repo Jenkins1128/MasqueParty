@@ -12,19 +12,15 @@ import FirebaseFirestore
 @testable import MasqueParty
 
 class MasquePartyFirebaseTests: XCTestCase {
-
     var sut: Firestore!
     let networkMonitor = NetworkMonitor.shared
     
-    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
         try super.setUpWithError()
         sut = Firestore.firestore()
     }
     
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         sut = nil
         try super.tearDownWithError()
     }
@@ -51,7 +47,7 @@ class MasquePartyFirebaseTests: XCTestCase {
             }
             promise.fulfill()
         }
-        wait(for: [promise], timeout: 5)
+        wait(for: [promise], timeout: 10)
         //then
         XCTAssertTrue(exists)
     }
@@ -77,7 +73,7 @@ class MasquePartyFirebaseTests: XCTestCase {
             didSave = true
             promise.fulfill()
         }
-        wait(for: [promise], timeout: 5)
+        wait(for: [promise], timeout: 10)
         //then
         XCTAssertTrue(didSave)
     }
@@ -102,7 +98,7 @@ class MasquePartyFirebaseTests: XCTestCase {
             }
             promise.fulfill()
         }
-        wait(for: [promise], timeout: 5)
+        wait(for: [promise], timeout: 10)
         //then
         XCTAssertTrue(dataReceived)
     }
@@ -129,11 +125,8 @@ class MasquePartyFirebaseTests: XCTestCase {
             }
             promise.fulfill()
         }
-        wait(for: [promise], timeout: 5)
+        wait(for: [promise], timeout: 10)
         //then
         XCTAssertTrue(didQueryForUsers)
     }
-    
-    
-
 }
