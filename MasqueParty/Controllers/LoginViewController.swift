@@ -11,7 +11,6 @@ import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-
 class LoginViewController: UIViewController {
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     
@@ -20,9 +19,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButton.delegate = self
-        firebaseManager = FirebaseManager()
-        firebaseManager?.delegate = self
+        configureFirebaseManager()
+        configureDelegates()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +35,15 @@ class LoginViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
+    }
+    
+    func configureFirebaseManager() {
+        firebaseManager = FirebaseManager()
+    }
+    
+    func configureDelegates() {
+        loginButton.delegate = self
+        firebaseManager?.delegate = self
     }
     
     func showLoginButton(_ show: Bool = true) {
@@ -64,8 +71,6 @@ class LoginViewController: UIViewController {
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(controller)
     }
 }
-
-
 
 //MARK: - LoginButtonDelegate
 

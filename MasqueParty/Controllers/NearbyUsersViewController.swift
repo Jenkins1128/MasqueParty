@@ -17,15 +17,6 @@ class NearbyUsersViewController: UIViewController {
     private var locationManager = LocationManager()
     private var nearbyUsers : [NearbyUser] = []
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationItem.hidesBackButton = true
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDelegates()
@@ -36,9 +27,13 @@ class NearbyUsersViewController: UIViewController {
         startRefreshing()
     }
     
-    func configureCollectionView() {
-        nearbyUsersCollectionView.register(UINib(nibName: K.CellInfo.nearbyCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CellInfo.nearbyCellIdentifier)
-        nearbyUsersCollectionView.accessibilityIdentifier = "nearbyUsersCollectionView"
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.hidesBackButton = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     func configureDelegates() {
@@ -59,8 +54,9 @@ class NearbyUsersViewController: UIViewController {
         locationManager.searchNearbyForUsers()
     }
     
-    func setTitle(_ title: String){
-        navigationItem.title = title
+    func configureCollectionView() {
+        nearbyUsersCollectionView.register(UINib(nibName: K.CellInfo.nearbyCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CellInfo.nearbyCellIdentifier)
+        nearbyUsersCollectionView.accessibilityIdentifier = "nearbyUsersCollectionView"
     }
     
     func startRefreshing() {
@@ -69,6 +65,10 @@ class NearbyUsersViewController: UIViewController {
     
     func endRefreshing() {
         nearbyUsersCollectionView.refreshControl?.endRefreshing()
+    }
+    
+    func setTitle(_ title: String){
+        navigationItem.title = title
     }
 }
 
