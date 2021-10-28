@@ -94,6 +94,7 @@
 		E9545C8E271947080002CBF3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E96A09082728705800CBE62D /* MasquePartyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MasquePartyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96A090A2728705800CBE62D /* MasquePartyFirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasquePartyFirebaseTests.swift; sourceTree = "<group>"; };
+		E96BBD49272B0F720032B486 /* MasqueParty-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MasqueParty-Bridging-Header.h"; path = "../MasqueParty-Bridging-Header.h"; sourceTree = "<group>"; };
 		E96C960327149A4100E1186D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E976E717272899E200CA5220 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E976E71D272933DE00CA5220 /* MasquePartyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MasquePartyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -301,6 +302,7 @@
 		E9EABA1E1D4C7AA500B3FB1D /* MasqueParty */ = {
 			isa = PBXGroup;
 			children = (
+				E96BBD49272B0F720032B486 /* MasqueParty-Bridging-Header.h */,
 				E9EABA1F1D4C7AA500B3FB1D /* AppDelegate.swift */,
 				E9545C8C2717734B0002CBF3 /* SceneDelegate.swift */,
 				E994EBC0270F71AE00FE71AA /* Models */,
@@ -934,7 +936,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_OBJC_BRIDGING_HEADER = ./Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "./MasqueParty-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1007,7 +1009,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_OBJC_BRIDGING_HEADER = ./Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "./MasqueParty-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
