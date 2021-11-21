@@ -17,7 +17,7 @@ MasqueParty is a social utility app that allows you to see people's bios and per
 * Swift Package Manager
 * Facebook SDK
 * IQKeyboardManagerSwift
-* Unit and UI tests
+* XCTest
 
 ## Design Patterns
 
