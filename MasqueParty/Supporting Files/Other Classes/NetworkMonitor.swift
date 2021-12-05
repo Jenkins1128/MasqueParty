@@ -20,10 +20,11 @@ class NetworkMonitor {
   }
 
   func startMonitoring() {
+    let queue = DispatchQueue(label: "NetworkMonitor")
+      
     monitor.pathUpdateHandler = { path in
         self.status = path.status
     }
-    let queue = DispatchQueue(label: "NetworkMonitor")
     monitor.start(queue: queue)
   }
 

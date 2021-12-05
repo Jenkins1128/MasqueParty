@@ -11,8 +11,7 @@ import UIKit
 class RoundedImageView: UIImageView {
     override func layoutSubviews() {
         super.layoutSubviews()
-        let radius = self.frame.width/2.0
-        layer.cornerRadius = radius
+        layer.cornerRadius = self.frame.width / 2.0
         clipsToBounds = true
     }
 }

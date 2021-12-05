@@ -34,6 +34,7 @@ struct LocationManager {
     
     func searchNearbyForUsers() {
         delegate?.setControllerTitle("Searching nearby...")
+        
         if checkIfLocationEnabled() {
             requestLocation()
         }else{

@@ -36,6 +36,7 @@ struct K {
         static let usersCollection = "users"
         static let postsCollection = "posts"
         static let profilePic = "profile_pic_small"
+        static let defaultProfilePicURL = "https://www.gravatar.com/avatar/11c489ceed7151debcbfa12ee3094cf1?d=mp"
         static let currentUser = Auth.auth().currentUser
         static let currentUserId = Auth.auth().currentUser?.uid ?? ""
     }

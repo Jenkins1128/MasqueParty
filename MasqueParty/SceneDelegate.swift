@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         let storyboard = UIStoryboard(name: K.mainStoryboard, bundle: nil)
-        if let _ = UserDefaults.standard.string(forKey: K.UserDefaults.uid) {
+        if UserDefaults.standard.string(forKey: K.UserDefaults.uid) != nil {
             let mainTabBarController = storyboard.instantiateViewController(identifier: K.Controllers.mainTabBar)
             window?.rootViewController = mainTabBarController
         } else {
@@ -29,10 +29,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         window.rootViewController = vc
-        UIView.transition(with: window,
-                          duration: 0.5,
-                          options: [.transitionFlipFromLeft],
-                          animations: nil,
-                          completion: nil)
+        UIView.transition(with: window, duration: 0.5, options: [.transitionFlipFromLeft], animations: nil, completion: nil)
     }
 }

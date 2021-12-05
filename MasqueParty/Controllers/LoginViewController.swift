@@ -68,6 +68,7 @@ class LoginViewController: UIViewController {
     func goTo(_ storyboardId: String){
         let storyboard = UIStoryboard(name: K.mainStoryboard, bundle: nil)
         let controller = storyboard.instantiateViewController(identifier: storyboardId)
+        
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(controller)
     }
 }
@@ -84,22 +85,24 @@ extension LoginViewController : LoginButtonDelegate {
     }
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        if let error = error {
-            print(error.localizedDescription)
+        guard error == nil,
+              let result = result else {
+            print(error!.localizedDescription)
             return
         }
-        guard let result = result else {
-            return
-        }
+        
         if result.isCancelled {
             stopLoadingSpinner()
             return
         }
+        
         let credential = FacebookAuthProvider
             .credential(withAccessToken: AccessToken.current!.tokenString)
+        
         if #available(iOS 13.0, *) {
             firebaseManager?.signIn(with: credential)
         }
+        
         showLoginButton(false)
     }
 }
@@ -110,6 +113,7 @@ extension LoginViewController : FirebaseDelegate {
     func showMessagePrompt(_ message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
         alert.addAction(okAction)
         present(alert, animated: false, completion: nil)
     }
@@ -117,7 +121,7 @@ extension LoginViewController : FirebaseDelegate {
     func signInError(_ error: Error) {
         stopLoadingSpinner()
         showLoginButton()
-        self.showMessagePrompt(error.localizedDescription)
+        showMessagePrompt(error.localizedDescription)
     }
     
     @available(iOS 13.0, *)

@@ -31,12 +31,23 @@ class UserViewController: UIViewController {
         guard let nearbyUser = nearbyUser else {
             return
         }
-        if let userProfilePicURL = NSURL(string: nearbyUser.picURL) as URL?,
-           let imageData = NSData(contentsOf: userProfilePicURL) {
-            self.profilePic.image =  UIImage(data:imageData as Data)
-        }
+        
         self.name.text = nearbyUser.name
         self.bio.text = nearbyUser.bio
+        
+        let userProfilePicURLString = nearbyUser.picURL
+        
+        guard let userProfilePicURL = URL(string: userProfilePicURLString) else {
+            return
+        }
+        
+        do {
+            let imageData = try Data(contentsOf: userProfilePicURL)
+            
+            self.profilePic.image =  UIImage(data:imageData as Data)
+        } catch {
+            print("Unable to load data: \(error)")
+        }
     }
 }
 

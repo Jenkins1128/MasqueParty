@@ -56,9 +56,11 @@ class ProfileViewController: UIViewController {
     
     @IBAction func saveBio(_ sender: UIButton) {
         let bioText = bio.text ?? ""
+        
         guard bioText.count > 0 else {
             return
         }
+        
         firebaseManager.setDataForCurrentUser("bio", bioText)
     }
     
@@ -75,6 +77,7 @@ extension ProfileViewController : FirebaseDelegate {
     func promptMessage(_ message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
@@ -83,20 +86,28 @@ extension ProfileViewController : FirebaseDelegate {
         guard let userData = userData else {
             return
         }
+        
         DispatchQueue.main.async {
-            if let userProfilePicURL = NSURL(string: userData["profile_pic_small"] as! String) as URL?,
-               let imageData = NSData(contentsOf: userProfilePicURL) {
-                self.profilePic.image =  UIImage(data:imageData as Data)
-                
-            }
             let fullName = userData["name"] as? String ?? ""
             let bioString = userData["bio"] as? String ?? ""
+            let userProfilePicURLString = (userData["profile_pic_small"] ?? K.FStore.defaultProfilePicURL) as! String
+            
             self.name.text = fullName
             self.navigationItem.title = fullName
-            if bioString.count > 0 {
-                self.bio.text = bioString
-            }
+            self.bio.text = bioString.count > 0 ? bioString : ""
             self.endRefreshing()
+            
+            guard let userProfilePicURL = URL(string: userProfilePicURLString) else {
+                return
+            }
+            
+            do {
+                let imageData = try Data(contentsOf: userProfilePicURL)
+                
+                self.profilePic.image = UIImage(data: imageData)
+            } catch {
+                print("Unable to load data: \(error)")
+            }
         }
     }
 }

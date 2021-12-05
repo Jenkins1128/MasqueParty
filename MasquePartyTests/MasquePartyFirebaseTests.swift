@@ -35,16 +35,19 @@ class MasquePartyFirebaseTests: XCTestCase {
         var exists = false
         //when
         let docRef = sut.collection(K.FStore.usersCollection).document(K.FStore.currentUserId)
+        
         docRef.getDocument { (document, error) in
             guard error == nil else {
                 XCTFail("Error: \(error?.localizedDescription ?? "")")
                 return
             }
+            
             if let document = document, document.exists {
                 if document.get(field) != nil {
                     exists = true
                 }
             }
+            
             promise.fulfill()
         }
         wait(for: [promise], timeout: 10)
@@ -63,6 +66,7 @@ class MasquePartyFirebaseTests: XCTestCase {
         var didSave = false
         //when
         let docRef = sut.collection(K.FStore.usersCollection).document(K.FStore.currentUserId)
+        
         docRef.setData([
             key: value,
         ], merge: true) { error in
@@ -70,6 +74,7 @@ class MasquePartyFirebaseTests: XCTestCase {
                 XCTFail("Error: \(error?.localizedDescription ?? "")")
                 return
             }
+            
             didSave = true
             promise.fulfill()
         }
@@ -88,14 +93,17 @@ class MasquePartyFirebaseTests: XCTestCase {
         let uid = K.FStore.currentUserId
         //when
         let docRef = sut.collection(K.FStore.usersCollection).document(uid)
+        
         docRef.getDocument { (document, error) in
             guard error == nil else {
                 XCTFail("Error: \(error?.localizedDescription ?? "")")
                 return
             }
+            
             if let document = document, document.exists {
                 dataReceived = true
             }
+            
             promise.fulfill()
         }
         wait(for: [promise], timeout: 10)
@@ -110,11 +118,13 @@ class MasquePartyFirebaseTests: XCTestCase {
         var didQueryForUsers = false
         //when
         let docRef = sut.collection(K.FStore.usersCollection).whereField("postalCity", isEqualTo: currentLocation).limit(to: 20)
+        
         docRef.getDocuments() { querySnapshot, error in
             guard error == nil else {
                 XCTFail("Error: \(error?.localizedDescription ?? "")")
                 return
             }
+            
             if let snapshotDocuments = querySnapshot?.documents {
                 for doc in snapshotDocuments {
                     let nearbyUserId = doc.documentID
@@ -123,6 +133,7 @@ class MasquePartyFirebaseTests: XCTestCase {
                     }
                 }
             }
+            
             promise.fulfill()
         }
         wait(for: [promise], timeout: 10)

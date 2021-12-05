@@ -85,11 +85,21 @@ extension NearbyUsersViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellInfo.nearbyCellIdentifier, for: indexPath as IndexPath) as! NearbyCollectionViewCell
-        if let userProfilePicURL = NSURL(string: nearbyUsers[indexPath.row].picURL) as URL?,
-           let imageData = NSData(contentsOf: userProfilePicURL) {
+        let userProfilePicURLString = nearbyUsers[indexPath.row].picURL
+        
+        guard let userProfilePicURL = URL(string: userProfilePicURLString) else {
+            return cell
+        }
+        
+        do {
+            let imageData = try Data(contentsOf: userProfilePicURL)
+            
             cell.nearbyImage.image = UIImage(data:imageData as Data)
             cell.uid = nearbyUsers[indexPath.row].uid
+        } catch {
+            print("Unable to load data: \(error)")
         }
+        
         return cell
     }
 }
@@ -106,6 +116,7 @@ extension NearbyUsersViewController : UICollectionViewDelegate {
         if segue.identifier == "goToUserProfile" {
             let indexPath = sender as! IndexPath
             let destitinationVC = segue.destination as! UserViewController
+            
             destitinationVC.nearbyUser = nearbyUsers[indexPath.row]
         }
     }
@@ -120,16 +131,20 @@ extension NearbyUsersViewController : FirebaseDelegate {
     
     func addNearbyUser(_ uid: String, _ picURL: String, _ name: String, _ bio: String) {
         let newUser = NearbyUser(uid: uid, picURL: picURL, name: name, bio: bio)
+        
         self.nearbyUsers.append(newUser)
     }
     
     func refreshCollectionView(_ currentLocation: String) {
         DispatchQueue.main.async {
             self.nearbyUsersCollectionView.reloadData()
+            
             if self.nearbyUsers.count > 0 {
                 let indexPath = IndexPath(row: self.nearbyUsers.count - 1, section: 0)
+                
                 self.nearbyUsersCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
             }
+            
             self.setControllerTitle(currentLocation)
             self.endRefreshing()
         }
@@ -149,26 +164,26 @@ extension NearbyUsersViewController : CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locationManager.stopUpdatingLocation()
         guard let location = locations.first else {
             setTitle("No Location")
             return
         }
+        
         let geocoder = CLGeocoder()
+        
         geocoder.reverseGeocodeLocation(location) { placemarks, error in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            if let firstPlacemark = placemarks?.first {
-                var currentlocation = firstPlacemark.subAdministrativeArea ?? "no sub area"
-                if let name = firstPlacemark.name {
-                    currentlocation = name
-                }
-                self.firebaseManager.setDataForCurrentUser("postalCity", currentlocation)
-                self.firebaseManager.queryForUsersInLocation(currentlocation)
-            }
+            guard error == nil,
+                  let firstPlacemark = placemarks?.first else {
+                      print(error!.localizedDescription)
+                      return
+                  }
+            
+            let currentlocation = firstPlacemark.name ?? firstPlacemark.subAdministrativeArea ?? "no sub area"
+
+            self.firebaseManager.setDataForCurrentUser("postalCity", currentlocation)
+            self.firebaseManager.queryForUsersInLocation(currentlocation)
         }
+        locationManager.stopUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
